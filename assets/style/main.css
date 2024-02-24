@@ -1,0 +1,199 @@
+
+body {background-color: #f4f4f2;}
+
+.ml-24 {margin-left: 220px;}
+
+.body-container {
+	margin-top: 80px;
+	margin-bottom: 30px;
+	width: 100%;
+	height: 100%;
+}
+
+.col-2 {
+	display: grid;
+  	grid-template-columns: 49.4% 49.4%;
+  	grid-gap: 15px;
+  	margin-top: 25px;
+  	margin-left: 20px;
+  	margin-right: 10px;
+}
+
+.col-3 {
+	display: grid;
+  	grid-template-columns: 32.5% 32.5% 32.5%;
+  	grid-gap: 15px;
+  	margin-top: 25px;
+  	margin-left: 20px;
+  	margin-right: 10px;
+}
+
+.panel {
+	margin: 20px 10px 50px 20px;
+	border: 1px solid #fafafa;
+	background-color: #ffffff;
+}
+
+.panel p {
+	text-align: center;
+	font-size: 20px;
+	font-family: Arial black;
+	margin: 10px;
+}
+
+
+/*========================================= Dashboard =========================================*/
+
+
+.item {
+  	border: 1px solid #fafafa;
+  	background-color: #ffffff; 
+  	text-align: center;
+  	font-family: Arial;
+  	display: block;
+}
+
+.item-link {
+	padding: 15px;
+	font-size: 18px;	
+}
+
+.item-link a {
+	text-decoration: none;
+	color: black;
+
+}
+
+.item-link a:hover {text-decoration: underline;}
+
+
+/* ================================= All tables ======================================== */
+
+table {
+  	border-collapse: collapse;
+  	width: 100%;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  font-family: Arial;
+  font-size: 14px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {background-color: #F5F9FB;}
+
+td {height: 30px;}
+
+tr:hover {background-color: #f5f5f5;}
+
+
+/* =================================== Trash ====================================== */
+
+.mt-4 {margin-top: 40px;}
+
+.button-item {
+	border-radius: 5px;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-family: Arial;
+	display: block;
+	font-size: 20px;
+	opacity: 0.8;
+  transition: 0.3s;
+	
+}
+
+.button-item:hover {opacity: 1}
+
+.button-bg-b {background-color: #008CBA;}
+
+/* =========================== List Trash ============================= */
+
+.btn {
+  	border: none;
+  	border-radius: 5px;
+  	color: white;
+  	padding: 8px 10px;
+  	font-size: 14px;
+  	text-decoration: none;
+  	font-family: Arial;
+  	transition: 0.3s;
+}
+
+.m-2 {margin: 20px;}
+
+.m-1 {margin: 10px;}
+
+.mb-4 {margin-bottom: 40px;}
+
+.btn-primary {background-color: #008CBA;} 
+
+.btn-primary:hover {opacity: 0.8}
+
+.btn-danger {background-color: #f44336;}
+
+.btn-danger:hover {background: #da190b;}
+
+/* =========================== Partner ================================== */
+
+.mt-2 {margin-top: 20px;}
+
+/* ============================ Collection ================================ */
+
+
+.panel-top div {
+  display: inline-block;
+}
+
+.panel-form {
+  margin: 5px 10px 0px 20px;
+  border: 1px solid #f4f4f2;
+  font-family: Arial;
+  float: right;
+}
+
+.panel-form form {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 7px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.sort-form {
+  margin: 10px 0px 10px 10px;
+  font-family: Arial;
+}
+
+.sort-form input {
+  padding: 7px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+@media (max-width: 800px) {
+  .form-inline input {
+    margin: 10px 0;
+  }
+  
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
