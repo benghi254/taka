@@ -10,13 +10,13 @@ class Fuser
     {   //Function to add a new admin to the system
 
         $con=Database::getConnection();
-        $req=$con->prepare('INSERT INTO admin SET firstname=?,lastname=?,username=?,password=?,role=?,idPart=?');
+        $req=$con->prepare('INSERT INTO user SET fullname=?,email=?,phone=?,password=?,action=?');
         $req->execute(array(
-            $user->getFirstname(),
-            $user->getLastname(),
-            $user->getUsername(),
+            $user->getFullname(),
+            $user->getEmail(),
+            $user->getPhone(),
             sha1($user->getPassword()),
-            $user->getRole(),
+            $user->getAction(),
             $user->getDateCreated()
         ));
         return $con->lastInsertId();
@@ -26,13 +26,13 @@ class Fuser
     {   // Function to update a specific admin
 
         $con=Database::getConnection();
-        $req=$con->prepare('UPDATE admin SET firstname=?,lastname=?,username=?,password=?,role=? WHERE _idAdmin=?');
+        $req=$con->prepare('UPDATE admin user SET fullname=?,email=?,phone=?,password=?,action=? WHERE userId=?');
         $req->execute(array(
-            $user->getFirstname(),
-            $user->getLastname(),
-            $user->getUsername(),
+            $user->getFullname(),
+            $user->getEmail(),
+            $user->getPhone(),
             sha1($user->getPassword()),
-            $user->getRole(),
+            $user->getAction(),
             $user->getId()
         ));
     }
@@ -41,7 +41,7 @@ class Fuser
     {   //Function to check if a username already exist in the database
 
         $con=Database::getConnection();
-        $req=$con->prepare('SELECT * FROM users WHERE email=?');
+        $req=$con->prepare('SELECT * FROM user WHERE email=?');
         $req->execute(array($email));
         if($req->rowCount()==0)
         {
@@ -54,7 +54,7 @@ class Fuser
     {   // Function to get all the contractor admin
 
         $con=Database::getConnection();
-        $req=$con->prepare('SELECT * FROM admin a, partners p WHERE a.idPart=p._idPart');
+        $req=$con->prepare('SELECT * FROM user ');
         $req->execute(array());
         return $req->fetchAll();
     }
@@ -65,17 +65,17 @@ class Fuser
     {   // Function to get information on a specific admin
 
         $con=Database::getConnection();
-        $req=$con->prepare('SELECT * FROM admin WHERE _idAdmin=?');
-        $req->execute(array($idAdmin));
+        $req=$con->prepare('SELECT * FROM user WHERE userId=?');
+        $req->execute(array($idUser));
         return $req->fetch();
     }
     
-    static function login($username,$password)
+    static function login($email,$password)
     {   // Function to Login
 
         $con=Database::getConnection();
-        $req=$con->prepare('SELECT * FROM users WHERE email=? AND password=?');
-        $req->execute(array($username,sha1($password)));
+        $req=$con->prepare('SELECT * FROM user WHERE email=? AND password=?');
+        $req->execute(array($email,sha1($password)));
         if($req->rowCount()==0)
         {
             return false;
@@ -87,7 +87,7 @@ class Fuser
     {   // Function to check the number of admin in the system in order to avoid deleting all the admin
 
         $con=Database::getConnection();
-        $req=$con->prepare('SELECT * FROM users WHERE idPart=? AND role!=?');
+        $req=$con->prepare('SELECT * FROM usersWHERE idPart=? AND role!=?');
         $req->execute(array($idPart,'monitor'));
 
         return $req->rowCount();
@@ -98,7 +98,7 @@ class Fuser
     {   // Function to delete an admin from the system
 
         $con=Database::getConnection();
-        $req=$con->prepare('DELETE FROM users WHERE _userId=?');
+        $req=$con->prepare('DELETE FROM user WHERE userId=?');
         $req->execute(array($idUser));
 
     }

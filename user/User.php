@@ -3,29 +3,30 @@ class User
 {
 
     private $id;
-    private $firstname;
-    private $lastname;
-    private $username;
+    private $fullname;
     private $email;
+    private $phone;
     private $password;
+    private $action;
     private $dateCreated;
 
     /**
      * Admin constructor.
      * @param $id
-     * @param $username
-     * @param $role
+     * @param $fullname
+     * @param $email
+     * @param $action
      * @param $password
      * @param $dateCreated
      */
-    public function __construct($id, $firstname, $lastname, $username, $role, $password, $dateCreated)
+    public function __construct($id, $fullname, $email, $phone, $password, $action, $dateCreated)
     {
         $this->id = $id;
-        $this->username = $username;
-        $this->firstname = $firstname;
-        $this->lastname = $lastname;
+        $this->fullname = $fullname;
         $this->email = $email;
+        $this->phone = $phone;
         $this->password = $password;
+        $this->action = $action;
         $this->dateCreated = $dateCreated;
     }
 
@@ -48,49 +49,17 @@ class User
     /**
      * @return mixed
      */
-    public function getFirstname()
+    public function getFullname()
     {
-        return $this->firstname;
+        return $this->fullname;
     }
 
     /**
      * @param mixed $username
      */
-    public function setFirstname($firstname)
+    public function setFullname($fullname)
     {
-        $this->firstname = $firstname;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getlastname()
-    {
-        return $this->lastname;
-    }
-
-    /**
-     * @param mixed $username
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * @param mixed $username
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
+        $this->fullname = $fullname;
     }
 
     /**
@@ -98,15 +67,31 @@ class User
      */
     public function getEmail()
     {
-        return $this->role;
+        return $this->email;
     }
 
     /**
-     * @param mixed $role
+     * @param mixed $username
      */
     public function setEmail($role)
     {
         $this->role = $role;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param mixed $username
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
     }
 
     /**
@@ -128,6 +113,22 @@ class User
     /**
      * @return mixed
      */
+    public function getAction()
+    {
+        return $this->action;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setAction($action)
+    {
+        $this->action = $action;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getDateCreated()
     {
         return $this->dateCreated;
@@ -143,3 +144,5 @@ class User
 
 
 }
+;
+    
