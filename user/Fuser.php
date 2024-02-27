@@ -1,16 +1,16 @@
 <?php
 
 include_once 'User.php';
-include_once 'Database.php';
+include_once '../modals/Database.php';
 
 class Fuser
 {
 
     static function addNewUser(User $user)
-    {   //Function to add a new admin to the system
+    {   //Function to add a new user to the system
 
         $con=Database::getConnection();
-        $req=$con->prepare('INSERT INTO user SET fullname=?,email=?,phone=?,password=?,action=?');
+        $req=$con->prepare('INSERT INTO user SET fullname=?,Email=?,Mobile=?,Password=?,Verified=?,DateCreated=?');
         $req->execute(array(
             $user->getFullname(),
             $user->getEmail(),
@@ -19,14 +19,14 @@ class Fuser
             $user->getAction(),
             $user->getDateCreated()
         ));
-        return $con->lastInsertId();
+        
     }
 
     static function updateUser(Admin $admin)
-    {   // Function to update a specific admin
+    {   // Function to update a specific user
 
         $con=Database::getConnection();
-        $req=$con->prepare('UPDATE admin user SET fullname=?,email=?,phone=?,password=?,action=? WHERE userId=?');
+        $req=$con->prepare('UPDATE admin user SET fullname=?,Email=?,Mobile=?,Password=?,Verified=?,DateCreated=? WHERE userId=?');
         $req->execute(array(
             $user->getFullname(),
             $user->getEmail(),
