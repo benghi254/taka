@@ -15,11 +15,12 @@ if(isset($_POST['fullname'],$_POST['email'],$_POST['phone'],$_POST['password'],$
         $res=FUser::addNewUser($user);
         if(is_numeric($res))
         {
-            $_SESSION['done']="User added Successfully";
-            header('Location: userDashboard.php');
-        }else{
             $_SESSION['err']="Impossible to add this Worker";
             header('Location: register.php');
+        }else{
+            
+            $_SESSION['done']="User added Successfully";
+            header('Location: userDashboard.php');
         }
     }else
     {

@@ -16,15 +16,15 @@ if(!isset($_SESSION['username']))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>DashBoard</title>
-    <link rel="stylesheet" href="assets/style/menu.css">
-    <link rel="stylesheet" href="assets/style/main.css">
+    <link rel="stylesheet" href="../assets/style/menu.css">
+    <link rel="stylesheet" href="../assets/style/main.css">
    
 </head>
 <body>
 
-    <?php include_once 'commons/menu.php';?>
+    <?php include_once 'userMenu.php';?>
         
-    <?php include_once 'commons/header.php';?>  
+    <?php include_once 'userHeader.php';?>  
 
     <div class="body-container">
         <div class="ml-24">
