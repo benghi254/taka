@@ -17,7 +17,7 @@ if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empt
         echo "<div><p>login error</p></div>" ;
         //header('Location: userLogin.php');
     }else{
-        $_SESSION['username']=$data['fullname'];
+        $_SESSION['username']=$data['fullName'];
         $_SESSION['verified']=$data['Verified'];
         $_SESSION['userID']=$data['userId'];
         $_SESSION['phone']=$data['Mobile'];
