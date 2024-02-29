@@ -67,6 +67,9 @@ if(isset($_POST['username'],$_POST['password']) && !empty($_POST['username']) &&
         </div>
 
     </form>
+    <div class="m-2 back-link">
+                    <a href="register.php">Create Account</a>
+                </div>
 </div>
 </body>
 </html>

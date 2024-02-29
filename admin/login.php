@@ -12,13 +12,13 @@ if(!isset($_SESSION))
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="assets/style/form.css">
+    <link rel="stylesheet" href="../assets/style/form.css">
 
 </head>
 <body>
 
 <div class="form-container">
-    <form action="controllers/login.php" method="post">
+    <form action="../controllers/login.php" method="post">
         <div class="form-title">
             <h2>Login</h2>
         </div>

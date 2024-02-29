@@ -15,11 +15,12 @@ class User
      * @param $id
      * @param $fullname
      * @param $email
+     * @param $phone
      * @param $action
      * @param $password
      * @param $dateCreated
      */
-    public function __construct($id, $fullname, $email, $phone, $password, $action, $dateCreated)
+    public function __construct( $id,$fullname, $email, $phone, $password, $action, $dateCreated)
     {
         $this->id = $id;
         $this->fullname = $fullname;

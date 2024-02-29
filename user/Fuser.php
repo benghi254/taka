@@ -10,14 +10,14 @@ class Fuser
     {   //Function to add a new user to the system
 
         $con=Database::getConnection();
-        $req=$con->prepare('INSERT INTO user SET fullname=?,Email=?,Mobile=?,Password=?,Verified=?,DateCreated=?');
+        $req=$con->prepare('INSERT INTO user(fullname,Email,Mobile,Password,Verified) VALUES(?,?,?,?,?)');
         $req->execute(array(
             $user->getFullname(),
             $user->getEmail(),
             $user->getPhone(),
             sha1($user->getPassword()),
             $user->getAction(),
-            $user->getDateCreated()
+            
         ));
         
     }
@@ -38,7 +38,7 @@ class Fuser
     }
 
     static function checkEmail($email)
-    {   //Function to check if a username already exist in the database
+    {   //Function to check if a email already exist in the database
 
         $con=Database::getConnection();
         $req=$con->prepare('SELECT * FROM user WHERE email=?');

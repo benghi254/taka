@@ -5,10 +5,11 @@ if(isset($_POST['fullname'],$_POST['email'],$_POST['phone'],$_POST['password'],$
 {
     include_once 'User.php';
     include_once 'Fuser.php';
+    
 
     
     $user=new User(null,$_POST['fullname'],$_POST['email'],$_POST['phone'],$_POST['password'],$_POST['action'],null);
-
+ 
     if(FUser::checkEmail($_POST['email']))
     {
         $res=FUser::addNewUser($user);
