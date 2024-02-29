@@ -43,7 +43,7 @@ if(isset($_POST['username'],$_POST['password']) && !empty($_POST['username']) &&
 <body>
 
 <div class="form-container">
-    <form action="controllers/login.php" method="post">
+    <form action="login.php" method="post">
         <div class="form-title">
             <h2>Login</h2>
         </div>
@@ -57,7 +57,7 @@ if(isset($_POST['username'],$_POST['password']) && !empty($_POST['username']) &&
         </div>
         <div class="field-container">
             <label><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
+            <input type="email" placeholder="Enter Email" name="email" required>
 
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>

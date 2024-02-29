@@ -74,7 +74,7 @@ class Fuser
     {   // Function to Login
 
         $con=Database::getConnection();
-        $req=$con->prepare('SELECT * FROM user WHERE email=? AND password=?');
+        $req=$con->prepare('SELECT * FROM user WHERE Email=? AND Password=?');
         $req->execute(array($email,sha1($password)));
         if($req->rowCount()==0)
         {
