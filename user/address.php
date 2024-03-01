@@ -2,7 +2,7 @@
 class Address
 {
 
-    private $id;
+    private $addressId;
     private $userId;
     private $county;
     private $constituency;
@@ -13,21 +13,23 @@ class Address
 
     /**
      * Admin constructor.
-     * @param $id
-     * @param $username
-     * @param $role
-     * @param $password
-     * @param $dateCreated
+     * @param $addressId
+     * @param $userId
+     * @param $county
+     * @param $constituency
+     * @param $ward
+     * @param $description
+     * @param $holder
      */
-    public function __construct($id, $userId, $county, $constituency, $ward, $description, $dateCreated)
+    public function __construct($id, $userId, $county, $constituency, $ward, $description, $holder)
     {
-        $this->id = $id;private $dateCreated;
+        $this->id = $id;
         $this->userId = $userId;
         $this->county = $county;
         $this->constituency = $constituency;
         $this->ward = $ward;
-        $this->descriptio = $description;
-        $this->dateCreated = $dateCreated;
+        $this->description = $description;
+        $this->holder = $holder;
     }
 
     /**
@@ -129,17 +131,17 @@ class Address
     /**
      * @return mixed
      */
-    public function getDateCreated()
+    public function getHolder()
     {
-        return $this->dateCreated;
+        return $this->holder;
     }
 
     /**
      * @param mixed $dateCreated
      */
-    public function setDateCreated($dateCreated)
+    public function setHolder($holder)
     {
-        $this->dateCreated = $dateCreated;
+        $this->holder = $holder;
     }
 
 

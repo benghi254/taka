@@ -18,16 +18,16 @@ if(!isset($_SESSION['username']))
 
     <title>Register</title>
 
-    <link rel="stylesheet" href="assets/style/menu.css">
-    <link rel="stylesheet" href="assets/style/main.css">
-    <link rel="stylesheet" href="assets/style/form.css">
+    <link rel="stylesheet" href="../assets/style/menu.css">
+    <link rel="stylesheet" href="../assets/style/main.css">
+    <link rel="stylesheet" href="../assets/style/form.css">
    
 </head>
 <body>
     
-    <?php include_once 'commons/menu.php';?>
+    <?php include_once 'userMenu.php';?>
 
-    <?php include_once 'commons/header.php';?>
+    <?php include_once 'userHeader.php';?>
        
 
     <div class="body-container">
@@ -52,16 +52,16 @@ if(!isset($_SESSION['username']))
                     </div>
                     <div class="field-container">
                         <label><b>County</b></label>
-                        <input type="text" placeholder="Enter FirstName" name="firstname" required>
+                        <input type="text" placeholder="Enter County" name="firstname" required>
 
                         <label><b>Constituency</b></label>
-                        <input type="text" placeholder="Enter LastName" name="lastname" required>
+                        <input type="text" placeholder="Enter Constituency" name="lastname" required>
 
                         <label><b>Ward</label>
-                        <input type="text" placeholder="Enter Email Address" name="email" required>
+                        <input type="text" placeholder="Enter ward" name="email" required>
 
                         <label><b>Description</b></label>
-                        <input type="number" placeholder="Enter Phone" name="phone" required>
+                        <input type="text-area" placeholder="Enter Description" name="phone" required>
 
                          <select  class="custom-select" name="role" required>
                             <option value="">Select Role</option>
@@ -73,7 +73,7 @@ if(!isset($_SESSION['username']))
 
 
                       
-                        <input type="hidden" value="<?=$_SESSION['UserId'];?>" name="UserId">
+                        <input type="hidden" value="<?php echo'$_SESSION["UserId"]';?>" name="UserId">
                         
 
                         <button type="submit">Submit</button>
