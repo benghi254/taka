@@ -16,7 +16,7 @@ if(!isset($_SESSION['username']))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Register</title>
+    <title>location details</title>
 
     <link rel="stylesheet" href="../assets/style/menu.css">
     <link rel="stylesheet" href="../assets/style/main.css">
@@ -33,12 +33,10 @@ if(!isset($_SESSION['username']))
     <div class="body-container">
         <div class="ml-24">
             <div class="form-container">
-                <div class="m-2 back-link">
-                    <a href="userLogin.php">Login Instead</a>
-                </div>
-                <form action="controllers/newWorker.php" method="post">
+             
+                <form action="newAddress.php" method="post">
                     <div class="form-title">
-                        <h2>Add New Worker</h2>
+                        <h2>Enter Address Details</h2>
                     </div>
                     <div class="err-submit">
                         <?php if(isset($_SESSION['err'])):?>
@@ -61,7 +59,7 @@ if(!isset($_SESSION['username']))
                         <input type="text" placeholder="Enter ward" name="email" required>
 
                         <label><b>Description</b></label>
-                        <input type="text-area" placeholder="Enter Description" name="phone" required>
+                        <input type="textbox" placeholder="Enter Description" name="phone" required>
 
                          <select  class="custom-select" name="role" required>
                             <option value="">Select Role</option>

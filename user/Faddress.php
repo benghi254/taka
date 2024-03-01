@@ -3,14 +3,14 @@
 include_once 'User.php';
 include_once '../modals/Database.php';
 
-class Fuser
+class Faddress
 {
 
     static function addNewAddress(Address $address)
     {   //Function to add a new user to the system
 
         $con=Database::getConnection();
-        $req=$con->prepare('INSERT INTO _address(county,constituency,Ward,Details,userId) VALUES(?,?,?,?,?)');
+        $req=$con->prepare('INSERT INTO address(County,Constituency,Ward,Details,userId) VALUES(?,?,?,?,?)');
         $req->execute(array(
             $address->getCounty(),
             $address->getConstituency(),
@@ -27,7 +27,7 @@ class Fuser
     {   // Function to update a specific user
 
         $con=Database::getConnection();
-        $req=$con->prepare('UPDATE admin user SET fullname=?,Email=?,Mobile=?,Password=?,Verified=?,DateCreated=? WHERE userId=?');
+        $req=$con->prepare('UPDATE address SET County=?,Constituency=?,Ward=?,Details=?,Holder=?,userId=? WHERE AddressId=?');
         $req->execute(array(
             $address->getCounty(),
             $address->getConstituency(),
@@ -39,24 +39,24 @@ class Fuser
         ));
     }
 
-    static function checkUserId($userId)
+    /*static function checkUserId($userId)
     {   //Function to check if a email already exist in the database
 
         $con=Database::getConnection();
-        $req=$con->prepare('SELECT * FROM user WHERE email=?');
+        $req=$con->prepare('SELECT * FROM address WHERE email=?');
         $req->execute(array($userId));
         if($req->rowCount()==0)
         {
             return true;
         }
         return false;
-    }
+    }*/
   
     static function getAllAddress()
     {   // Function to get all the contractor admin
 
         $con=Database::getConnection();
-        $req=$con->prepare('SELECT * FROM user ');
+        $req=$con->prepare('SELECT * FROM address ');
         $req->execute(array());
         return $req->fetchAll();
     }
@@ -67,7 +67,7 @@ class Fuser
     {   // Function to get information on a specific admin
 
         $con=Database::getConnection();
-        $req=$con->prepare('SELECT * FROM user WHERE userId=?');
+        $req=$con->prepare('SELECT * FROM address WHERE AddressId=?');
         $req->execute(array($idUser));
         return $req->fetch();
     }
@@ -79,7 +79,7 @@ class Fuser
     {   // Function to delete an admin from the system
 
         $con=Database::getConnection();
-        $req=$con->prepare('DELETE FROM user WHERE userId=?');
+        $req=$con->prepare('DELETE FROM address WHERE AddressId=?');
         $req->execute(array($idUser));
 
     }
