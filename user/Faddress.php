@@ -1,6 +1,6 @@
 <?php
 
-include_once 'User.php';
+include_once 'address.php';
 include_once '../modals/Database.php';
 
 class Faddress
@@ -10,12 +10,12 @@ class Faddress
     {   //Function to add a new user to the system
 
         $con=Database::getConnection();
-        $req=$con->prepare('INSERT INTO address(County,Constituency,Ward,Details,userId) VALUES(?,?,?,?,?)');
+        $req=$con->prepare('INSERT INTO address(County,Constituency,Ward,Details,Holder,userId) VALUES(?,?,?,?,?,?)');
         $req->execute(array(
             $address->getCounty(),
             $address->getConstituency(),
             $address->getWard(),
-            $address->getDetails(),
+            $address->getDescription(),
             $address->getHolder(),
             $address->getUserId()
             
@@ -32,7 +32,7 @@ class Faddress
             $address->getCounty(),
             $address->getConstituency(),
             $address->getWard(),
-            $address->getDetails(),
+            $address->getDescription(),
             $address->getHolder(),
             $address->getUserId(),
             $address->getAddressId()

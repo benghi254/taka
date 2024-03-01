@@ -50,18 +50,18 @@ if(!isset($_SESSION['username']))
                     </div>
                     <div class="field-container">
                         <label><b>County</b></label>
-                        <input type="text" placeholder="Enter County" name="firstname" required>
+                        <input type="text" placeholder="Enter County" name="county" required>
 
                         <label><b>Constituency</b></label>
-                        <input type="text" placeholder="Enter Constituency" name="lastname" required>
+                        <input type="text" placeholder="Enter Constituency" name="constituency" required>
 
                         <label><b>Ward</label>
-                        <input type="text" placeholder="Enter ward" name="email" required>
+                        <input type="text" placeholder="Enter ward" name="ward" required>
 
                         <label><b>Description</b></label>
-                        <input type="textbox" placeholder="Enter Description" name="phone" required>
+                        <input type="text" placeholder="Enter Description" name="details" required>
 
-                         <select  class="custom-select" name="role" required>
+                         <select  class="custom-select" name="holder" required>
                             <option value="">Select Role</option>
                            
                             <option value="home">Home</option>
@@ -71,7 +71,7 @@ if(!isset($_SESSION['username']))
 
 
                       
-                        <input type="hidden" value="<?php echo'$_SESSION["UserId"]';?>" name="UserId">
+                        <input type="hidden" value="<?=$_SESSION['userId'];?>" name="userId">
                         
 
                         <button type="submit">Submit</button>

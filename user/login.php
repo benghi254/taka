@@ -19,7 +19,7 @@ if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empt
     }else{
         $_SESSION['username']=$data['fullName'];
         $_SESSION['verified']=$data['Verified'];
-        $_SESSION['userID']=$data['userId'];
+        $_SESSION['userId']=$data['userId'];
         $_SESSION['phone']=$data['Mobile'];
         $_SESSION['dateStart']=date("Y-m-d", time());
         $_SESSION['dateEnd']=date("Y-m-d", time());

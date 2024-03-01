@@ -8,7 +8,7 @@ class Address
     private $constituency;
     private $ward;
     private $description;
-    private $holder
+    private $holder;
     
 
     /**
@@ -21,9 +21,9 @@ class Address
      * @param $description
      * @param $holder
      */
-    public function __construct($id, $userId, $county, $constituency, $ward, $description, $holder)
+    public function __construct($addressId, $county, $constituency, $ward, $description, $holder, $userId)
     {
-        $this->id = $id;
+        $this->addressId = $addressId;
         $this->userId = $userId;
         $this->county = $county;
         $this->constituency = $constituency;
@@ -37,15 +37,15 @@ class Address
      */
     public function getId()
     {
-        return $this->id;
+        return $this->addressId;
     }
 
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    public function setId($addressId)
     {
-        $this->id = $id;
+        $this->addressId = $addressId;
     }
 
     /**
