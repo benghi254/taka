@@ -63,12 +63,12 @@ class Faddress
 
 
 
-    static function getAddressInfoById($addressId)
+    static function getAddressInfoById($userId)
     {   // Function to get information on a specific admin
 
         $con=Database::getConnection();
-        $req=$con->prepare('SELECT * FROM address WHERE AddressId=?');
-        $req->execute(array($idUser));
+        $req=$con->prepare('SELECT * FROM address WHERE userId=?');
+        $req->execute(array($userId));
         return $req->fetch();
     }
     

@@ -19,38 +19,77 @@ if(!isset($_SESSION['username']))
 
     <title>Admin</title>
 
-    <link rel="stylesheet" href="assets/style/menu.css">
-    <link rel="stylesheet" href="assets/style/main.css">
+    <link rel="stylesheet" href="../assets/style/menu.css">
+    <link rel="stylesheet" href="../assets/style/main.css">
+    <link rel="stylesheet" href="../assets/style/form.css">
    
 </head>
 <body>
     
-    <?php include_once 'commons/menu.php';?>
+    <?php include_once 'userMenu.php';?>
 
-    <?php include_once 'commons/header.php';?>
+    <?php include_once 'userHeader.php';?>
        
     
 
     <div class="body-container">
+    <div class="body-container">
         <div class="ml-24">
-            <div class="panel">
-                <p>Choose the type of garbage Program</p>         
-            </div>            
+            <div class="form-container">
+               
+                <form action="controllers/newTrash.php" method="post">
+                    <div class="form-title">
+                        <h2>Add New Trash Bin</h2>
+                    </div>
+                    <div class="err-submit">
+                        <?php if(isset($_SESSION['err'])):?>
+                            <?=$_SESSION['err'];?>
+                            <?php unset($_SESSION['err']); endif;?>
+                    </div>
+                    <div class="success-submit">
+                        <?php if(isset($_SESSION['done'])):?>
+                            <?=$_SESSION['done'];?>
+                            <?php unset($_SESSION['done']); endif;?>
+                    </div>
+                    <div class="field-container">
+                        <label><b>Weight</b></label>
+                        <input type="text" placeholder="Enter approximate weight" name="weight" required>
 
-            <div class="col-3 mt-4">
-                <div class="">
-                    <a class="button-item button-bg-b" href="house.php">Residence</a>
-                </div>
-                <div class="">
-                    <a class="button-item button-bg-b" href="business.php">Business</a>
-                </div>  
-                <div class="">
-                    <a class="button-item button-bg-b" href="Institution.php">Institution</a>
-                </div>               
+                        
+
+                        <select  class="custom-select" name="type" required>  
+                            <option value="">Select Pickup Day</option>
+                            <option value="monday">Monday</option>
+                            <option value="tuesday">Tuesday</option>
+                            <option value="wednesday">Wednesday</option>
+                            <option value="thursday">Thursday</option>
+                            <option value="friday">Friday</option>
+                            <option value="sartuday">Sartuday</option>
+                        </select>
+                        <select  class="custom-select" name="type" required>  
+                            <option value="">Select type of Trash</option>
+                            <option value="hazardous">Hazardous</option>
+                            <option value="recyclable">Recyclable</option>
+                            <option value="wet">Wet</option>
+                            <option value="dry">Dry</option>
+                            <option value="other">Other</option>
+                        </select>
+
+                        <input type="hidden" value="<?=$_SESSION['userId'];?>" name="userId">
+                        <input type="hidden" value="<?=$_SESSION['details'];?>" name="details">
+                        <input type="hidden" value="<?=$_SESSION['area'];?>" name="area">
+
+                        <button type="submit">Save Trash</button>
+
+                    </div>
+
+
+                </form>
             </div>
-                   
+                           
         </div>
             
+     
     </div>
 </body>
 

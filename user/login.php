@@ -8,6 +8,7 @@ if(!isset($_SESSION))
 if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empty($_POST['password']))
 {
     include_once 'Fuser.php';
+    include_once 'Faddress.php';
 
     $data=Fuser::login($_POST['email'],$_POST['password']);
 
@@ -23,6 +24,15 @@ if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empt
         $_SESSION['phone']=$data['Mobile'];
         $_SESSION['dateStart']=date("Y-m-d", time());
         $_SESSION['dateEnd']=date("Y-m-d", time());
+
+        $addr=Faddress::getAddressInfoById($_SESSION['userId']);
+        if($addr){
+            $_SESSION['area']=$addr['Ward'];
+            $_SESSION['details']=$addr['Details'];
+            $_SESSION['type']=$addr['Holder'];
+
+            header('location: userDashboard.php');
+        }
 
         header('Location: userDashboard.php');
     }
