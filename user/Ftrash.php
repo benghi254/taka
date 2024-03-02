@@ -6,7 +6,7 @@ include_once '../modals/Database.php';
 class Ftrash
 {
 
-    static function addNewAddress(trash $trash)
+    static function addNewTrash(trash $trash)
     {   //Function to add a new user to the system
 
         $con=Database::getConnection();

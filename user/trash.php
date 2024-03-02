@@ -20,9 +20,10 @@ class Trash
      * @param $collectDate
      * @param $ward
      * @param $description
+     * @param $trashType
      * @param $issueDate
      */
-    public function __construct($trashId, $weight, $collectDate, $ward, $description, $issueDate, $trashType,$userId)
+    public function __construct($trashId, $weight, $collectDate, $ward, $description, $trashType, $userId, $issueDate)
     {
         $this->trashId = $trashId;
         $this->userId = $userId;

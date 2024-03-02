@@ -1,16 +1,16 @@
 <?php
 
 if(isset($_POST['weight'],$_POST['collectDay'],$_POST['ward'],$_POST['details'],$_POST['trashType'],$_POST['userId'])
-&& !empty($_POST['county']) && !empty($_POST['constituency']) && !empty($_POST['ward'])&& !empty($_POST['details']))
+&& !empty($_POST['weight']) && !empty($_POST['collectDay']) && !empty($_POST['ward'])&& !empty($_POST['details']))
 {
-    include_once 'address.php';
-    include_once 'Faddress.php';
+    include_once 'trash.php';
+    include_once 'Ftrash.php';
     
 
     
-    $address=new Address(null,$_POST['county'],$_POST['constituency'],$_POST['ward'],$_POST['details'],$_POST['holder'],$_POST['userId']);
+    $trash=new Address(null,$_POST['weight'],$_POST['collectDay'],$_POST['area'],$_POST['details'],$_POST['trashType'],$_POST['userId']);
  
-    $res=Faddress::addNewAddress($address);
+    $res=Faddress::addNewTrash($trash);
         if(is_numeric($res))
         {
             $_SESSION['err']="Impossible to add this address";

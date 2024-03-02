@@ -37,7 +37,7 @@ if(!isset($_SESSION['username']))
         <div class="ml-24">
             <div class="form-container">
                
-                <form action="controllers/newTrash.php" method="post">
+                <form action="newTrash.php" method="post">
                     <div class="form-title">
                         <h2>Add New Trash Bin</h2>
                     </div>
@@ -57,7 +57,7 @@ if(!isset($_SESSION['username']))
 
                         
 
-                        <select  class="custom-select" name="type" required>  
+                        <select  class="custom-select" name="collectDay" required>  
                             <option value="">Select Pickup Day</option>
                             <option value="monday">Monday</option>
                             <option value="tuesday">Tuesday</option>
@@ -66,7 +66,7 @@ if(!isset($_SESSION['username']))
                             <option value="friday">Friday</option>
                             <option value="sartuday">Sartuday</option>
                         </select>
-                        <select  class="custom-select" name="type" required>  
+                        <select  class="custom-select" name="trashType" required>  
                             <option value="">Select type of Trash</option>
                             <option value="hazardous">Hazardous</option>
                             <option value="recyclable">Recyclable</option>
