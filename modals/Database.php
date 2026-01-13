@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
 date_default_timezone_set('Africa/Nairobi');
-=======
-date_default_timezone_set('Asia/Kolkata');
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
 
 class Database
 {

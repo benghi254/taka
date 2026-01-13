@@ -1,7 +1,6 @@
 <?php
 
 
-<<<<<<< HEAD
 //header('Location: user/userLogin.php');
 ?>
 <!DOCTYPE html>
@@ -162,6 +161,3 @@
 
 </body>
 </html>
-=======
-header('Location: user/userLogin.php');
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc

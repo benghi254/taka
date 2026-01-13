@@ -3,16 +3,11 @@ class Trash
 {
 
     private $trashId;
-<<<<<<< HEAD
     
-=======
-    private $userId;
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
     private $weight;
     private $collectDate;
     private $ward;
     private $description;
-<<<<<<< HEAD
     private $trashType;
     private $userId;
     private $issueDate;
@@ -23,48 +18,25 @@ class Trash
      * Trash constructor.
      * @param $trashId
      * 
-=======
-    private $issueDate;
-    private $trashType
-    
-
-    /**
-     * Admin constructor.
-     * @param $trashId
-     * @param $userId
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
      * @param $weight
      * @param $collectDate
      * @param $ward
      * @param $description
      * @param $trashType
-<<<<<<< HEAD
      * @param $userId
-=======
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
      * @param $issueDate
      */
     public function __construct($trashId, $weight, $collectDate, $ward, $description, $trashType, $userId, $issueDate)
     {
-<<<<<<< HEAD
         $this->trashId = $trashId;       
-=======
-        $this->trashId = $trashId;
-        $this->userId = $userId;
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
         $this->weight = $weight;
         $this->collectDate = $collectDate;
         $this->ward = $ward;
         $this->description = $description;
-<<<<<<< HEAD
         $this->trashType = $trashType;
         $this->userId = $userId;
         $this->issueDate = $issueDate;
         
-=======
-        $this->issueDate = $issueDate;
-        $this->trashType = $trashType;
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
     }
 
     /**
@@ -72,7 +44,6 @@ class Trash
      */
     public function getTrashId()
     {
-<<<<<<< HEAD
         return $this->trashId;
     }
 
@@ -82,17 +53,6 @@ class Trash
     public function setTrashId($trashId)
     {
         $this->trashId = $trashId;
-=======
-        return $this->addressId;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setTrashId($addressId)
-    {
-        $this->addressId = $addressId;
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
     }
 
     /**
@@ -104,11 +64,7 @@ class Trash
     }
 
     /**
-<<<<<<< HEAD
      * @param mixed $userId
-=======
-     * @param mixed $username
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
      */
     public function setUserId($userId)
     {
@@ -124,11 +80,7 @@ class Trash
     }
 
     /**
-<<<<<<< HEAD
      * @param mixed $weight
-=======
-     * @param mixed $username
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
      */
     public function setWeight($weight)
     {
@@ -144,11 +96,7 @@ class Trash
     }
 
     /**
-<<<<<<< HEAD
      * @param mixed $collectDate
-=======
-     * @param mixed $username
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
      */
     public function setCollectDate($collectDate)
     {
@@ -164,11 +112,7 @@ class Trash
     }
 
     /**
-<<<<<<< HEAD
      * @param mixed $ward
-=======
-     * @param mixed $role
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
      */
     public function setWard($ward)
     {
@@ -184,11 +128,7 @@ class Trash
     }
 
     /**
-<<<<<<< HEAD
      * @param mixed $description
-=======
-     * @param mixed $password
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
      */
     public function setDescription($description)
     {
@@ -204,11 +144,7 @@ class Trash
     }
 
     /**
-<<<<<<< HEAD
      * @param mixed $issueDate
-=======
-     * @param mixed $dateCreated
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
      */
     public function setIssueDate($issueDate)
     {
@@ -223,11 +159,7 @@ class Trash
     }
 
     /**
-<<<<<<< HEAD
      * @param mixed $trashType
-=======
-     * @param mixed $dateCreated
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
      */
     public function setTrashType($trashType)
     {

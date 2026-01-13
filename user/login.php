@@ -22,12 +22,7 @@ if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empt
         $_SESSION['verified']=$data['Verified'];
         $_SESSION['userId']=$data['userId'];
         $_SESSION['phone']=$data['Mobile'];
-<<<<<<< HEAD
         
-=======
-        $_SESSION['dateStart']=date("Y-m-d", time());
-        $_SESSION['dateEnd']=date("Y-m-d", time());
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
 
         $addr=Faddress::getAddressInfoById($_SESSION['userId']);
         if($addr){
@@ -43,10 +38,5 @@ if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empt
 }else
 {
     $_SESSION['err']="Please complete all fill";
-<<<<<<< HEAD
-    echo $_SESSION;
-   // header('Location: userLogin.php');
-=======
     header('Location: userLogin.php');
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
 }

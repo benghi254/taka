@@ -19,32 +19,18 @@ if(!isset($_SESSION['username']))
 
     <title>Admin-List</title>
 
-<<<<<<< HEAD
     <link rel="stylesheet" href="../assets/style/menu.css">
     <link rel="stylesheet" href="../assets/style/main.css">
-=======
-    <link rel="stylesheet" href="assets/style/menu.css">
-    <link rel="stylesheet" href="assets/style/main.css">
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
    
 </head>
 <body>
 
-<<<<<<< HEAD
     <?php include_once '../commons/menu.php';?>
 
     <?php include_once '../commons/header.php';?>
 
     
     <?php include_once '../modals/Fadmin.php';
-=======
-    <?php include_once 'commons/menu.php';?>
-
-    <?php include_once 'commons/header.php';?>
-
-    
-    <?php include_once 'modals/Fadmin.php';
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
         if($_SESSION['role']=='admin'){
             $users=Fadmin::getAllAdmin();
             $internalUsers=Fadmin::getAllAdminOrg($_SESSION['idPart']);
@@ -95,11 +81,7 @@ if(!isset($_SESSION['username']))
                             <td>                               
                                 <a class="btn btn-primary" href="editAdmin.php?idAdmin=<?=$user['_idAdmin'];?>">Edit</a>
 
-<<<<<<< HEAD
                                 <?php $href="../controllers/deleteAdmin.php?idAdmin=".$user['_idAdmin']."&idPart=".$user['idPart']; ?>
-=======
-                                <?php $href="controllers/deleteAdmin.php?idAdmin=".$user['_idAdmin']."&idPart=".$user['idPart']; ?>
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
 
                                 <a class="btn btn-danger" href=<?=$href; ?>>Delete</a>                               
                             </td>
@@ -117,11 +99,7 @@ if(!isset($_SESSION['username']))
                             <td>                               
                                 <a class="btn btn-primary" href="editAdmin.php?idAdmin=<?=$user['_idAdmin'];?>">Edit</a>
 
-<<<<<<< HEAD
                                 <?php $href="../controllers/deleteAdmin.php?idAdmin=".$user['_idAdmin']."&idPart=".$user['idPart'];?>
-=======
-                                <?php $href="controllers/deleteAdmin.php?idAdmin=".$user['_idAdmin']."&idPart=".$user['idPart'];?>
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
 
                                 <a class="btn btn-danger" href=<?=$href; ?>>Delete</a>                               
                             </td>

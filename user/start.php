@@ -4,11 +4,7 @@ session_start();
 
 if(!isset($_SESSION['username']))
 {
-<<<<<<< HEAD
    //header("location: index.php"); 
-=======
-   header("location: index.php"); 
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
 }
 
     
@@ -79,13 +75,8 @@ if(!isset($_SESSION['username']))
                             <option value="other">Other</option>
                         </select>
 
-<<<<<<< HEAD
-                        <input type="text" value="<?=$_SESSION['userId'];?>" name="userId">
-                        <input type="text" value="<?=$_SESSION['details'];?>" name="details">
-=======
                         <input type="hidden" value="<?=$_SESSION['userId'];?>" name="userId">
                         <input type="hidden" value="<?=$_SESSION['details'];?>" name="details">
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
                         <input type="hidden" value="<?=$_SESSION['area'];?>" name="area">
 
                         <button type="submit">Save Trash</button>

@@ -18,28 +18,16 @@ if(!isset($_SESSION['username']))
 
     <title>New-Contractor</title>
 
-<<<<<<< HEAD
     <link rel="stylesheet" href="../assets/style/menu.css">
     <link rel="stylesheet" href="../assets/style/main.css">
     <link rel="stylesheet" href="../assets/style/form.css">
-=======
-    <link rel="stylesheet" href="assets/style/menu.css">
-    <link rel="stylesheet" href="assets/style/main.css">
-    <link rel="stylesheet" href="assets/style/form.css">
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
    
 </head>
 <body>
 
-<<<<<<< HEAD
     <?php include_once '../commons/menu.php';?>
 
     <?php include_once '../commons/header.php';?>
-=======
-    <?php include_once 'commons/menu.php';?>
-
-    <?php include_once 'commons/header.php';?>
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
 
     <div class="body-container">
         <div class="ml-24">
@@ -47,11 +35,7 @@ if(!isset($_SESSION['username']))
                 <div class="m-2 back-link">
                     <a href="listContractor.php">< Contractor List  ></a>
                 </div>
-<<<<<<< HEAD
                 <form action="../controllers/newContractor.php" method="post">
-=======
-                <form action="controllers/newContractor.php" method="post">
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
                     <div class="form-title">
                         <h2>Add New Contractor</h2>
                     </div>

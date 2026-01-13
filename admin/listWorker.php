@@ -19,32 +19,18 @@ if(!isset($_SESSION['username']))
 
     <title>Worker-List</title>
 
-<<<<<<< HEAD
     <link rel="stylesheet" href="../assets/style/menu.css">
     <link rel="stylesheet" href="../assets/style/main.css">
-=======
-    <link rel="stylesheet" href="assets/style/menu.css">
-    <link rel="stylesheet" href="assets/style/main.css">
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
    
 </head>
 <body>
     
-<<<<<<< HEAD
     <?php include_once '../commons/menu.php';?>
 
     <?php include_once '../commons/header.php';?>
 
     
     <?php include_once '../modals/Fworker.php';
-=======
-    <?php include_once 'commons/menu.php';?>
-
-    <?php include_once 'commons/header.php';?>
-
-    
-    <?php include_once 'modals/Fworker.php';
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
 
         $workers=Fworker::getAllWorkers($_SESSION['idPart']);
     ?>
@@ -85,11 +71,7 @@ if(!isset($_SESSION['username']))
                             <td><?=$worker['date_created'];?></td>
                             <td>                               
                                 <a class="btn btn-primary" href="editWorker.php?idWorker=<?=$worker['_idUser'];?>">Edit</a>
-<<<<<<< HEAD
                                 <a class="btn btn-danger" href="../controllers/deleteWorker.php?idWorker=<?=$worker['_idUser'];?>">Delete</a>                               
-=======
-                                <a class="btn btn-danger" href="controllers/deleteWorker.php?idWorker=<?=$worker['_idUser'];?>">Delete</a>                               
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
                             </td>
                         </tr>
                     <?php endforeach;?>

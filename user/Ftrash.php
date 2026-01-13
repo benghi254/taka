@@ -10,7 +10,6 @@ class Ftrash
     {   //Function to add a new user to the system
 
         $con=Database::getConnection();
-<<<<<<< HEAD
         $req=$con->prepare('INSERT INTO trash(Weight,collectDay,Ward,Details,trashType,userId) VALUES(?,?,?,?,?,?)');
         $req->execute(array(
             $trash->getWeight(),
@@ -19,16 +18,6 @@ class Ftrash
             $trash->getDescription(),
             $trash->getTrashType(),
             $trash->getUserId()
-=======
-        $req=$con->prepare('INSERT INTO trash(Weight,collectDay,Ward,Details,issueDate,trashType,userId) VALUES(?,?,?,?,?,?,?)');
-        $req->execute(array(
-            $address->getWeight(),
-            $address->getCollectDate(),
-            $address->getWard(),
-            $address->getDescription(),
-            $address->getIssueDate(),
-            $address->getUserId()
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
             
         ));
         
@@ -40,7 +29,6 @@ class Ftrash
         $con=Database::getConnection();
         $req=$con->prepare('UPDATE trash SET Weight=?,collectDay=?,Ward=?,Details=?,issueDate=?,trashType=?,userId=? WHERE trashId=?');
         $req->execute(array(
-<<<<<<< HEAD
             $trash->getWeight(),
             $trash->getCollectDate(),
             $trash->getWard(),
@@ -48,15 +36,6 @@ class Ftrash
             $trash->getIssueDate(),
             $trash->getUserId(),
             $trash->getTrashId()
-=======
-            $address->getWeight(),
-            $address->getCollectDate(),
-            $address->getWard(),
-            $address->getDescription(),
-            $address->getIssueDate(),
-            $address->getUserId(),
-            $address->getTrashId()
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
         ));
     }
 
@@ -72,7 +51,6 @@ class Ftrash
     }
 
 
-<<<<<<< HEAD
     static function getTrash($trashId)
     {   // Function to get all the contractor admin
 
@@ -91,8 +69,6 @@ class Ftrash
     }
 
 
-=======
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
 
     static function getTrashInfoById($userId)
     {   // Function to get information on a specific admin

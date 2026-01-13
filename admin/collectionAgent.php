@@ -19,7 +19,6 @@ if(!isset($_SESSION['username']))
 
     <title>Collection-Agent</title>
 
-<<<<<<< HEAD
     <link rel="stylesheet" href="../assets/style/menu.css">
     <link rel="stylesheet" href="../assets/style/main.css">   
 </head>
@@ -31,19 +30,6 @@ if(!isset($_SESSION['username']))
 
     <?php 
         include_once '../modals/Fhistoric.php';
-=======
-    <link rel="stylesheet" href="assets/style/menu.css">
-    <link rel="stylesheet" href="assets/style/main.css">   
-</head>
-<body>
-    
-    <?php include_once 'commons/menu.php';?>
-
-    <?php include_once 'commons/header.php';?>
-
-    <?php 
-        include_once 'modals/Fhistoric.php';
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
 
         if ($_SESSION['role']=="admin") {
             $historic=Fhistoric::getAllHistoricCollectionAgent($_SESSION['dateStart'],$_SESSION['dateEnd']);
@@ -70,11 +56,7 @@ if(!isset($_SESSION['username']))
                 </div>
 
                 <div class="panel-form">
-<<<<<<< HEAD
                     <form class="form-inline" method="post" action="../controllers/collection.php">
-=======
-                    <form class="form-inline" method="post" action="controllers/collection.php">
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
                         <label>From:</label>
                         <input type="date" name="date_start" value="<?=($_SESSION['dateStart']);?>" required>
                         <label>To:</label>

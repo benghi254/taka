@@ -19,32 +19,18 @@ if(!isset($_SESSION['username']))
 
     <title>Contractor-List</title>
 
-<<<<<<< HEAD
     <link rel="stylesheet" href="../assets/style/menu.css">
     <link rel="stylesheet" href="../assets/style/main.css">
-=======
-    <link rel="stylesheet" href="assets/style/menu.css">
-    <link rel="stylesheet" href="assets/style/main.css">
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
    
 </head>
 <body>
    
-<<<<<<< HEAD
     <?php include_once '../commons/menu.php';?>
 
     <?php include_once '../commons/header.php';?>
 
     
     <?php include_once '../modals/Fcontractor.php';
-=======
-    <?php include_once 'commons/menu.php';?>
-
-    <?php include_once 'commons/header.php';?>
-
-    
-    <?php include_once 'modals/Fcontractor.php';
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
         $contractors=Fcontractor::getAllContractor();
     ?>
 
@@ -86,11 +72,7 @@ if(!isset($_SESSION['username']))
                             <td><?=$data['date_add'];?></td>
                             <td>
                                 <a class="btn btn-primary" href="editContractor.php?idPart=<?=$data['_idPart'];?>">Edit</a>
-<<<<<<< HEAD
                                 <a class="btn btn-danger" href="../controllers/deleteContractor.php?idPart=<?=$data['_idPart'];?>">Delete</a>
-=======
-                                <a class="btn btn-danger" href="controllers/deleteContractor.php?idPart=<?=$data['_idPart'];?>">Delete</a>
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
                             </td>
                         </tr>
                     <?php endforeach;?>

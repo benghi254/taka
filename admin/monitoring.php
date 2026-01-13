@@ -18,17 +18,10 @@ if(!isset($_SESSION['username']))
 
     <title>Monitoring</title>
 
-<<<<<<< HEAD
     <link rel="stylesheet" href="../assets/style/menu.css">
     <link rel="stylesheet" href="../assets/style/main.css">
 
     <script src="../assets/js/jquery-3.4.1.min.js"></script>
-=======
-    <link rel="stylesheet" href="assets/style/menu.css">
-    <link rel="stylesheet" href="assets/style/main.css">
-
-    <script src="assets/js/jquery-3.4.1.min.js"></script>
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
   
     <script> 
         $(function() {
@@ -41,21 +34,12 @@ if(!isset($_SESSION['username']))
 </head>
 <body>
     <div>
-<<<<<<< HEAD
         <?php include_once '../commons/menu.php';?>
 
         <?php include_once '../commons/header.php';?>
 
         <?php 
             include_once '../modals/Fhistoric.php';
-=======
-        <?php include_once 'commons/menu.php';?>
-
-        <?php include_once 'commons/header.php';?>
-
-        <?php 
-            include_once 'modals/Fhistoric.php';
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
             $historic=Fhistoric::getAllHistoricDay();
         ?>
        

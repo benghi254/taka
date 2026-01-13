@@ -22,11 +22,7 @@ class Fuser
         
     }
 
-<<<<<<< HEAD
     static function updateUser(User $user)
-=======
-    static function updateUser(Admin $admin)
->>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
     {   // Function to update a specific user
 
         $con=Database::getConnection();
