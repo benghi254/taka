@@ -1,0 +1,139 @@
+<?php
+
+session_start();
+
+if(!isset($_SESSION['username']))
+{
+   header("location: index.php"); 
+}
+
+    
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Admin-List</title>
+
+<<<<<<< HEAD
+    <link rel="stylesheet" href="../assets/style/menu.css">
+    <link rel="stylesheet" href="../assets/style/main.css">
+=======
+    <link rel="stylesheet" href="assets/style/menu.css">
+    <link rel="stylesheet" href="assets/style/main.css">
+>>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
+   
+</head>
+<body>
+
+<<<<<<< HEAD
+    <?php include_once '../commons/menu.php';?>
+
+    <?php include_once '../commons/header.php';?>
+
+    
+    <?php include_once '../modals/Fadmin.php';
+=======
+    <?php include_once 'commons/menu.php';?>
+
+    <?php include_once 'commons/header.php';?>
+
+    
+    <?php include_once 'modals/Fadmin.php';
+>>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
+        if($_SESSION['role']=='admin'){
+            $users=Fadmin::getAllAdmin();
+            $internalUsers=Fadmin::getAllAdminOrg($_SESSION['idPart']);
+        }
+
+        else {
+            $users=Fadmin::getAdminByOrg($_SESSION['idPart']);
+            $internalUsers=array();
+            $k=-1;
+        }
+    ?>
+
+       
+
+    <div class="body-container">
+        <div class="ml-24">
+            <div class="panel mb-4">
+                <p>ADMIN LIST</p>         
+            </div>
+
+            <div class="m-2">
+                <a class="btn btn-primary" href="newAdmin.php">+ New Admin</a>
+            </div>
+            
+
+            <div class="panel">
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="width: 40px">#</th>
+                        <th style="width: 140px">USERNAME</th>
+                        <th>FULL NAME</th>
+                        <th style="width: 150px">CONTRACTOR</th>
+                        <th style="width: 150px">ROLE</th>
+                        <th style="width: 180px">DATE CREATED</th>                    
+                        <th style="width: 150px">ACTION</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($internalUsers as $k => $user):?>
+                        <tr>
+                            <td><?=$k+1;?></td>
+                            <td><?=$user['username'];?></td>
+                            <td><?=ucwords($user['lastname']." ".$user['firstname']);?></td></td>
+                            <td>-</td>
+                            <td><?=$user['role'];?></td>
+                            <td><?=$user['date_created'];?></td>
+                            <td>                               
+                                <a class="btn btn-primary" href="editAdmin.php?idAdmin=<?=$user['_idAdmin'];?>">Edit</a>
+
+<<<<<<< HEAD
+                                <?php $href="../controllers/deleteAdmin.php?idAdmin=".$user['_idAdmin']."&idPart=".$user['idPart']; ?>
+=======
+                                <?php $href="controllers/deleteAdmin.php?idAdmin=".$user['_idAdmin']."&idPart=".$user['idPart']; ?>
+>>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
+
+                                <a class="btn btn-danger" href=<?=$href; ?>>Delete</a>                               
+                            </td>
+                        </tr>
+                    <?php endforeach;?>
+
+                    <?php foreach ($users as $j => $user):?>
+                        <tr>
+                            <td><?=$j+$k+2;?></td>
+                            <td><?=$user['username'];?></td>
+                            <td><?=ucwords($user['lastname']." ".$user['firstname']);?></td></td>
+                            <td><?=ucfirst($user['namePart']);?></td>
+                            <td><?=$user['role'];?></td>
+                            <td><?=$user['date_created'];?></td>
+                            <td>                               
+                                <a class="btn btn-primary" href="editAdmin.php?idAdmin=<?=$user['_idAdmin'];?>">Edit</a>
+
+<<<<<<< HEAD
+                                <?php $href="../controllers/deleteAdmin.php?idAdmin=".$user['_idAdmin']."&idPart=".$user['idPart'];?>
+=======
+                                <?php $href="controllers/deleteAdmin.php?idAdmin=".$user['_idAdmin']."&idPart=".$user['idPart'];?>
+>>>>>>> bb8ba0ea7dde2b9d91206291b244a6b946a91dcc
+
+                                <a class="btn btn-danger" href=<?=$href; ?>>Delete</a>                               
+                            </td>
+                        </tr>
+                    <?php endforeach;?>
+                    <tbody>
+                </table>
+            </div>
+                   
+        </div>
+            
+    </div>
+</body>
+
+</html>

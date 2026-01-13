@@ -14,7 +14,7 @@ if(isset($_POST['username'],$_POST['password']) && !empty($_POST['username']) &&
     if(!$data)
     {
         $_SESSION['err']="Username or Password invalid";
-        header('Location: ../login.php');
+        header('Location: ../admin/login.php');
     }else{
         $_SESSION['username']=$data['username'];
         $_SESSION['fullname']=$data['lastname']." ".$data['firstname'];
@@ -23,10 +23,10 @@ if(isset($_POST['username'],$_POST['password']) && !empty($_POST['username']) &&
         $_SESSION['dateStart']=date("Y-m-d", time());
         $_SESSION['dateEnd']=date("Y-m-d", time());
 
-        header('Location: ../dashboard.php');
+        header('Location: ../admin/dashboard.php');
     }
 }else
 {
     $_SESSION['err']="Please complete all fill";
-    header('Location: ../login.php');
+    header('Location: ../admin/login.php');
 }
