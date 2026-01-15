@@ -21,10 +21,10 @@ function formatPhoneNumber($phone) {
 
     return false; // invalid number
 }
-$consumerKey    = "t4YmLSVSZ6jrDvyzcdqGec9Bw1MJpA5i6fq7PEGHpMhScgCN";
-$consumerSecret = "eMG3UB6yFpR2CAIAITzPsaGKKaNYIEvU5jYDFyVpR1c2CGb8vgXfek422RjevhS8";
+$consumerKey    = "";
+$consumerSecret = "";
 $shortcode      = "174379"; 
-$passkey        = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+$passkey        = "";
 $callbackUrl    = "https://yourdomain.com/callback.php";
 
 $phone  = formatPhoneNumber($_POST['phone']);
