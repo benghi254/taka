@@ -83,3 +83,64 @@
 @media screen and (max-height: 450px) {
   .navbar {padding-top: 15px;}
   .navbar a {font-size: 18px;}
+}
+/* ================== MOBILE SIDEBAR FIX ================== */
+
+@media (max-width: 900px){
+
+  .navbar{
+      width: 70px;
+  }
+
+  .menu a{
+      text-align: center;
+      font-size: 12px;
+      padding: 12px 5px;
+  }
+
+  .h2 a{
+      font-size: 18px;
+      padding-left: 5px;
+  }
+}
+
+
+/* ================== PHONE LAYOUT ================== */
+
+@media (max-width: 600px){
+
+  .navbar{
+      width: 0;
+      overflow: hidden;
+  }
+
+  .top-bar{
+      height: 50px;
+  }
+
+  .top-bar li{
+      font-size: 14px;
+  }
+
+  .login-info{
+      padding-right: 10px;
+      padding-top: 10px;
+  }
+
+  /* Add hamburger toggle */
+  .menu-toggle{
+      display: block;
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+      z-index: 1000;
+  }
+
+  .navbar.active{
+      width: 220px;
+      transition: 0.3s;
+  }
+}

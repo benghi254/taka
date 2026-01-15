@@ -21,7 +21,7 @@ if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empt
         if(!$data)
         {
             $_SESSION['err']="Username or Password invalid";
-            header('Location: ../admin/login.php');
+            header('Location: login.php');
         }else{
             $_SESSION['username']=$data['username'];
             $_SESSION['fullname']=$data['lastname']." ".$data['firstname'];
@@ -33,6 +33,7 @@ if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empt
             header('Location: ../admin/dashboard.php');
         }
     }else{
+        
         $_SESSION['username']=$data['fullName'];
         $_SESSION['verified']=$data['Verified'];
         $_SESSION['userId']=$data['userId'];

@@ -21,7 +21,7 @@ if(isset($_SESSION['area'])){
 
     <title>location details</title>
 
-    <link rel="stylesheet" href="../assets/style/menu.css">
+    <link rel="stylesheet" href="../assets/style/me nu.css">
     <link rel="stylesheet" href="../assets/style/main.css">
     <link rel="stylesheet" href="../assets/style/form.css">
    

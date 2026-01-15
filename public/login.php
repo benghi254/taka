@@ -1,37 +1,8 @@
 <?php
-/*if(!isset($_SESSION))
+if(!isset($_SESSION))
 {
     session_start();
-}*/
-
-
-if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empty($_POST['password']))
-{
-    include_once 'Fuser.php';
-
-    $data=Fuser::login($_POST['email'],$_POST['password']);
-
-    if(!$data)
-    {
-        $_SESSION['err']="Username or Password invalid";
-        echo $_SESSION;
-        //header('Location: ../login.php');
-    }else{
-        session_start();
-        $_SESSION['username']=$data['fullname'];
-        $_SESSION['verified']=$data['Verified'];
-        $_SESSION['userId']=$data['userId'];
-        $_SESSION['phone']=$data['Mobile'];
-        
-
-        header('Location: userDashboard.php');
-    }
-    header('Location: userDashboard.php');
-}else
-/*{
-    $_SESSION['err']="Please complete all fill";
-    header('Location: userLogin.php');
-}*/
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,8 +30,8 @@ if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empt
                 <?php unset($_SESSION['done']); endif;?>
         </div>
         <div class="field-container">
-            <label><b>Email</b></label>
-            <input type="email" placeholder="Enter Email" name="email" required>
+            <label><b>Email or Username</b></label>
+            <input type="text" placeholder="Enter Email" name="email" required>
 
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>

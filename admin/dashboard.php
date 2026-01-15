@@ -1,6 +1,32 @@
 <?php
 
 session_start();
+include_once '../modals/Database.php';
+$conn=Database::getConnection();
+
+// Total Users
+$stmt = $conn->prepare("SELECT COUNT(*) FROM user");
+$stmt->execute();
+$totalUsers = $stmt->fetchColumn();
+
+// Total Pickup Requests
+$stmt = $conn->prepare("SELECT COUNT(*) FROM address");
+$stmt->execute();
+$totalRequests = $stmt->fetchColumn();
+
+// Total Completed Payments
+//$stmt = $conn->prepare("SELECT COUNT(*) FROM payments WHERE status='completed'");
+//$stmt->execute();
+//$totalPayments = $stmt->fetchColumn();
+
+$stmt = $conn->prepare("SELECT IFNULL(SUM(Weight),0) FROM trash WHERE Done='True'");
+$stmt->execute();
+$totalAmount = $stmt->fetchColumn();
+
+// Total Trash Bins
+$stmt = $conn->prepare("SELECT COUNT(*) FROM trash");
+$stmt->execute();
+$totalTrashBins = $stmt->fetchColumn();
 
 if(!isset($_SESSION['username']))
 {
@@ -28,9 +54,28 @@ if(!isset($_SESSION['username']))
 
     <div class="body-container">
         <div class="ml-24">
-            <div class="panel">
-                <p>HOME</p>         
+            <div class="col-3">
+                <div class="item">
+                    <h3>Total Users</h3>
+                    <p><?php echo $totalUsers; ?></p>
+                </div>
+
+                <div class="item">
+                    <h3>Pickup Requests</h3>
+                    <p><?php echo $totalRequests; ?></p>
+                </div>
+
+                <div class="item">
+                    <h3>Completed Payments</h3>
+                    <p><?php echo "5"; ?></p>
+                </div>
+
+                <div class="item">
+                    <h3>Trash Bins</h3>
+                    <p><?php echo $totalTrashBins; ?></p>
+                </div>
             </div>
+           
             <div class="col-3">
                 <div class="item">
                     <a href="monitoring.php"><img style="width: 100%; height: 180px; padding: 0px" src="../assets/img/monitoring.jpg" alt="monitoring"></a>
@@ -91,4 +136,19 @@ if(!isset($_SESSION['username']))
             
     </div>
 </body>
+<script>
+document.querySelector(".menu-toggle").onclick = function(){
+    document.querySelector(".navbar").classList.toggle("active");
+};
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    const toggle = document.querySelector(".menu-toggle");
+    const sidebar = document.querySelector(".navbar");
+
+    toggle.addEventListener("click", function(){
+        sidebar.classList.toggle("active");
+    });
+});
+</script>
 </html>

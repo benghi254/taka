@@ -2,6 +2,7 @@
 
 include_once 'address.php';
 include_once '../modals/Database.php';
+include_once '../modals/FaddressGeo.php';
 
 class Faddress
 {
@@ -21,6 +22,22 @@ class Faddress
             
         ));
         
+        // Get the inserted address ID
+        $addressId = $con->lastInsertId();
+        
+        // Save address with geo coordinates
+        if ($addressId) {
+            FaddressGeo::saveAddressWithGeo(
+                $addressId,
+                $address->getUserId(),
+                $address->getCounty(),
+                $address->getConstituency(),
+                $address->getWard(),
+                $address->getDescription()
+            );
+        }
+        
+        return $addressId;
     }
 
     static function updateAddress(Address $address)
@@ -35,8 +52,18 @@ class Faddress
             $address->getDescription(),
             $address->getHolder(),
             $address->getUserId(),
-            $address->getAddressId()
+            $address->getId()
         ));
+        
+        // Update geo coordinates for the address
+        FaddressGeo::saveAddressWithGeo(
+            $address->getId(),
+            $address->getUserId(),
+            $address->getCounty(),
+            $address->getConstituency(),
+            $address->getWard(),
+            $address->getDescription()
+        );
     }
 
     /*static function checkUserId($userId)

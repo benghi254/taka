@@ -1,5 +1,6 @@
 
 <div class="navbar">
+    <span class="menu-toggle">&#9776;</span>
     <div class="h2">
         <a href="dashboard.php">Dashboard</a>
     </div>
