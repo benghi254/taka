@@ -25,9 +25,9 @@ if(!isset($_SESSION['tr$trashname']))
 </head>
 <body>
 
-    <?php include_once 'tr$trashMenu.php';?>
+    <?php include_once 'userMenu.php';?>
 
-    <?php include_once 'tr$trashHeader.php';?>
+    <?php include_once 'userHeader.php';?>
 
     
     <?php include_once 'Ftrash.php';
@@ -37,8 +37,8 @@ if(!isset($_SESSION['tr$trashname']))
         }
 
         else {
-            $trash=Ftrash::getTrashInfoById($_SESSION['tr$trashId']);
-            $internaltr$trashs=array();
+            $trash=Ftrash::getTrashInfoById($_SESSION['userId']);
+            $internaltrashs=array();
             $k=-1;
         }
     ?>
@@ -70,7 +70,7 @@ if(!isset($_SESSION['tr$trashname']))
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($internaltr$trashs as $k => $trash):?>
+                    <?php foreach ($internaltrashs as $k => $trash):?>
                         <tr>
                             <td><?=$k+1;?></td>
                             <td><?=$trash['Weight'];?></td>
