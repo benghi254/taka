@@ -2,9 +2,9 @@
 
 session_start();
 
-if(!isset($_SESSION['tr$trashname']))
+if(!isset($_SESSION['username']))
 {
-  // header("location: index.php"); 
+   //header("location: index.php"); 
 }
 
     
@@ -17,91 +17,62 @@ if(!isset($_SESSION['tr$trashname']))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>TrashList</title>
+    <title>Trash-List</title>
 
     <link rel="stylesheet" href="../assets/style/menu.css">
     <link rel="stylesheet" href="../assets/style/main.css">
    
 </head>
 <body>
-
+    
     <?php include_once 'userMenu.php';?>
 
     <?php include_once 'userHeader.php';?>
 
-    
-    <?php include_once 'Ftrash.php';
-        if($_SESSION['role']=='admin'){
-            $trash=Ftrash::getAllTrash();
-            
-        }
+    <?php 
+        include_once 'Ftrash.php';
 
-        else {
-            $trash=Ftrash::getTrashInfoById($_SESSION['userId']);
-            $internaltrashs=array();
-            $k=-1;
-        }
+        $trahs=Ftrash::getAllTrash();
     ?>
 
-       
 
     <div class="body-container">
         <div class="ml-24">
             <div class="panel mb-4">
-                <p>Trash List</p>         
+                <p>LIST OF BINS</p>         
             </div>
 
             <div class="m-2">
-                <a class="btn btn-primary" href="start.php">+ New Trash</a>
+                <a class="btn btn-primary" href="newTrash.php">+ New Bin</a>
             </div>
             
-
             <div class="panel">
                 <table>
                     <thead>
                     <tr>
                         <th style="width: 40px">#</th>
-                        <th style="width: 140px">Weight</th>
-                        <th>Collect Day</th>
-                        <th style="width: 150px">Trashtype</th>
-                        <th style="width: 150px">Collection status</th>
-                        <th style="width: 180px">Aleet Date</th>                    
+                        <th style="width: 140px">ID TRASH BIN</th>
+                        <th style="width: 120px">AREA / ZONE</th>
+                        <th style="width: 110px">LONGITUDE</th>
+                        <th style="width: 110px">LATITUDE</th>
+                        <th style="width: 90px">TYPE</th>
+                        <th style="width: 150px">DATE CREATED</th>                    
                         <th style="width: 150px">ACTION</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($internaltrashs as $k => $trash):?>
+                    <?php foreach($trahs as $k => $trah):?>
                         <tr>
                             <td><?=$k+1;?></td>
-                            <td><?=$trash['Weight'];?></td>
-                            <td><?=ucwords($trash['lastname']." ".$trash['firstname']);?></td></td>
-                            <td>-</td>
-                            <td><?=$trash['role'];?></td>
-                            <td><?=$trash['date_created'];?></td>
+                            <td><?=$trah['idTrash'];?></td>
+                            <td title="<?=$trah['address'];?>"><?=$trah['area'];?></td>
+                            <td><?=$trah['longi'];?></td>
+                            <td><?=$trah['lat'];?></td>                            
+                            <td><?=$trah['typeTrash'];?></td>
+                            <td><?=$trah['dateTrash'];?></td>
                             <td>                               
-                                <a class="btn btn-primary" href="editAdmin.php?idAdmin=<?=$trash['_idAdmin'];?>">Edit</a>
-
-                                <?php $href="../controllers/deleteAdmin.php?idAdmin=".$trash['_idAdmin']."&idPart=".$trash['idPart']; ?>
-
-                                <a class="btn btn-danger" href=<?=$href; ?>>Delete</a>                               
-                            </td>
-                        </tr>
-                    <?php endforeach;?>
-
-                    <?php foreach ($trashs as $j => $trash):?>
-                        <tr>
-                            <td><?=$j+$k+2;?></td>
-                            <td><?=$trash['tr$trashname'];?></td>
-                            <td><?=ucwords($trash['lastname']." ".$trash['firstname']);?></td></td>
-                            <td><?=ucfirst($trash['namePart']);?></td>
-                            <td><?=$trash['role'];?></td>
-                            <td><?=$trash['date_created'];?></td>
-                            <td>                               
-                                <a class="btn btn-primary" href="editAdmin.php?idAdmin=<?=$trash['_idAdmin'];?>">Edit</a>
-
-                                <?php $href="../controllers/deleteAdmin.php?idAdmin=".$trash['_idAdmin']."&idPart=".$trash['idPart'];?>
-
-                                <a class="btn btn-danger" href=<?=$href; ?>>Delete</a>                               
+                                <a class="btn btn-primary" href="editTrash.php?idTrash=<?=$trah['_idTrash'];?>">Edit</a>
+                                <a class="btn btn-danger" href="controllers/deleteTrash.php?idTrash=<?=$trah['_idTrash'];?>">Delete</a>                               
                             </td>
                         </tr>
                     <?php endforeach;?>
