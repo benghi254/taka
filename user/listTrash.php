@@ -51,12 +51,12 @@ if(!isset($_SESSION['username']))
                     <thead>
                     <tr>
                         <th style="width: 40px">#</th>
-                        <th style="width: 140px">ID TRASH BIN</th>
-                        <th style="width: 120px">AREA / ZONE</th>
-                        <th style="width: 110px">LONGITUDE</th>
-                        <th style="width: 110px">LATITUDE</th>
-                        <th style="width: 90px">TYPE</th>
-                        <th style="width: 150px">DATE CREATED</th>                    
+                        <th style="width: 140px">WEIGHT(Kgs)</th>
+                        <th style="width: 120px">Collection DAy</th>
+                        <th style="width: 110px">AREA</th>
+                        <th style="width: 110px">TYPE</th>
+                        <th style="width: 90px">Date </th>
+                        <th style="width: 150px">Collected</th>                    
                         <th style="width: 150px">ACTION</th>
                     </tr>
                     </thead>
@@ -64,15 +64,15 @@ if(!isset($_SESSION['username']))
                     <?php foreach($trahs as $k => $trah):?>
                         <tr>
                             <td><?=$k+1;?></td>
-                            <td><?=$trah['idTrash'];?></td>
-                            <td title="<?=$trah['address'];?>"><?=$trah['area'];?></td>
-                            <td><?=$trah['longi'];?></td>
-                            <td><?=$trah['lat'];?></td>                            
-                            <td><?=$trah['typeTrash'];?></td>
-                            <td><?=$trah['dateTrash'];?></td>
+                            <td><?=$trah['Weight'];?></td>
+                            <td><?=$trah['collectDay'];?></td>
+                            <td><?=$trah['Details'];?></td>
+                            <td><?=$trah['trashType'];?></td>                            
+                            <td><?=$trah['issueDate'];?></td>
+                            <td><?=$trah['Done'];?></td>
                             <td>                               
-                                <a class="btn btn-primary" href="editTrash.php?idTrash=<?=$trah['_idTrash'];?>">Edit</a>
-                                <a class="btn btn-danger" href="controllers/deleteTrash.php?idTrash=<?=$trah['_idTrash'];?>">Delete</a>                               
+                                <a class="btn btn-primary" href="../admin/editTrash.php?idTrash=<?=$trah['trashId'];?>">Edit</a><br>
+                                <a class="btn btn-danger" href="../controllers/deleteTrash.php?idTrash=<?=$trah['trashId'];?>">Delete</a>                               
                             </td>
                         </tr>
                     <?php endforeach;?>
