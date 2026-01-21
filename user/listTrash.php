@@ -2,7 +2,7 @@
 
 session_start();
 
-if(!isset($_SESSION['username']))
+if(!isset($_SESSION['tr$trashname']))
 {
   // header("location: index.php"); 
 }
@@ -17,7 +17,7 @@ if(!isset($_SESSION['username']))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Admin-List</title>
+    <title>TrashList</title>
 
     <link rel="stylesheet" href="../assets/style/menu.css">
     <link rel="stylesheet" href="../assets/style/main.css">
@@ -25,9 +25,9 @@ if(!isset($_SESSION['username']))
 </head>
 <body>
 
-    <?php include_once 'userMenu.php';?>
+    <?php include_once 'tr$trashMenu.php';?>
 
-    <?php include_once 'userHeader.php';?>
+    <?php include_once 'tr$trashHeader.php';?>
 
     
     <?php include_once 'Ftrash.php';
@@ -37,8 +37,8 @@ if(!isset($_SESSION['username']))
         }
 
         else {
-            $trash=Ftrash::getTrashInfoById($_SESSION['userId']);
-            $internalUsers=array();
+            $trash=Ftrash::getTrashInfoById($_SESSION['tr$trashId']);
+            $internaltr$trashs=array();
             $k=-1;
         }
     ?>
@@ -70,36 +70,36 @@ if(!isset($_SESSION['username']))
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($internalUsers as $k => $user):?>
+                    <?php foreach ($internaltr$trashs as $k => $trash):?>
                         <tr>
                             <td><?=$k+1;?></td>
-                            <td><?=$user['username'];?></td>
-                            <td><?=ucwords($user['lastname']." ".$user['firstname']);?></td></td>
+                            <td><?=$trash['Weight'];?></td>
+                            <td><?=ucwords($trash['lastname']." ".$trash['firstname']);?></td></td>
                             <td>-</td>
-                            <td><?=$user['role'];?></td>
-                            <td><?=$user['date_created'];?></td>
+                            <td><?=$trash['role'];?></td>
+                            <td><?=$trash['date_created'];?></td>
                             <td>                               
-                                <a class="btn btn-primary" href="editAdmin.php?idAdmin=<?=$user['_idAdmin'];?>">Edit</a>
+                                <a class="btn btn-primary" href="editAdmin.php?idAdmin=<?=$trash['_idAdmin'];?>">Edit</a>
 
-                                <?php $href="../controllers/deleteAdmin.php?idAdmin=".$user['_idAdmin']."&idPart=".$user['idPart']; ?>
+                                <?php $href="../controllers/deleteAdmin.php?idAdmin=".$trash['_idAdmin']."&idPart=".$trash['idPart']; ?>
 
                                 <a class="btn btn-danger" href=<?=$href; ?>>Delete</a>                               
                             </td>
                         </tr>
                     <?php endforeach;?>
 
-                    <?php foreach ($users as $j => $user):?>
+                    <?php foreach ($trashs as $j => $trash):?>
                         <tr>
                             <td><?=$j+$k+2;?></td>
-                            <td><?=$user['username'];?></td>
-                            <td><?=ucwords($user['lastname']." ".$user['firstname']);?></td></td>
-                            <td><?=ucfirst($user['namePart']);?></td>
-                            <td><?=$user['role'];?></td>
-                            <td><?=$user['date_created'];?></td>
+                            <td><?=$trash['tr$trashname'];?></td>
+                            <td><?=ucwords($trash['lastname']." ".$trash['firstname']);?></td></td>
+                            <td><?=ucfirst($trash['namePart']);?></td>
+                            <td><?=$trash['role'];?></td>
+                            <td><?=$trash['date_created'];?></td>
                             <td>                               
-                                <a class="btn btn-primary" href="editAdmin.php?idAdmin=<?=$user['_idAdmin'];?>">Edit</a>
+                                <a class="btn btn-primary" href="editAdmin.php?idAdmin=<?=$trash['_idAdmin'];?>">Edit</a>
 
-                                <?php $href="../controllers/deleteAdmin.php?idAdmin=".$user['_idAdmin']."&idPart=".$user['idPart'];?>
+                                <?php $href="../controllers/deleteAdmin.php?idAdmin=".$trash['_idAdmin']."&idPart=".$trash['idPart'];?>
 
                                 <a class="btn btn-danger" href=<?=$href; ?>>Delete</a>                               
                             </td>
