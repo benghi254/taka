@@ -21,11 +21,11 @@ function formatPhoneNumber($phone) {
 
     return false; // invalid number
 }
-$consumerKey    = "t4YmLSVSZ6jrDvyzcdqGec9Bw1MJpA5i6fq7PEGHpMhScgCN";
-$consumerSecret = "eMG3UB6yFpR2CAIAITzPsaGKKaNYIEvU5jYDFyVpR1c2CGb8vgXfek422RjevhS8";
-$shortcode      = "174379"; 
-$passkey        = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
-$callbackUrl    = "https://yourdomain.com/callback.php";
+$consumerKey    = "NCTtd3WmK5sROZQCnS";
+$consumerSecret = "XTv64DQ7k1D50ZpPL5RG7uGU2ZlnfVZMuvJDhYjd";
+$shortcode      = "600900"; 
+$passkey        = "Kv06h2lnQIxUIyLVwZgJdCSltbQhThOV8KBBPAXsEBz1TwSRtaDCfN0Eb0sYva81";
+$callbackUrl    = "http:/localhost:8000/callback.php";
 
 $phone  = formatPhoneNumber($_POST['phone']);
 $amount = $_POST['amount'];
