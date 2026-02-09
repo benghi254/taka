@@ -30,8 +30,8 @@ if(!isset($_SESSION))
                 <?php unset($_SESSION['done']); endif;?>
         </div>
         <div class="field-container">
-            <label><b>Email or Username</b></label>
-            <input type="text" placeholder="Enter Email" name="email" required>
+            <label><b>Email  or Username </b></label>
+            <input type="text" placeholder="Enter Email or Username" name="login" required>
 
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>

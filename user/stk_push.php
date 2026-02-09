@@ -21,10 +21,10 @@ function formatPhoneNumber($phone) {
 
     return false; // invalid number
 }
-$consumerKey    = "NCTtd3WmK5sROZQCnS";
-$consumerSecret = "XTv64DQ7k1D50ZpPL5RG7uGU2ZlnfVZMuvJDhYjd";
+$consumerKey    = "Tngz5JfGgMylqqfJ7F";
+$consumerSecret = "qPnOwWvuMNYzi8JIUspj0aaXIUmXaqQfWOchCN4A";
 $shortcode      = "600900"; 
-$passkey        = "Kv06h2lnQIxUIyLVwZgJdCSltbQhThOV8KBBPAXsEBz1TwSRtaDCfN0Eb0sYva81";
+$passkey        = "QOkLiwEIF77lLtRR8s06rQvnPOB0bf6RnfT0GAcAI3OAfRtxiZnvPAGPkftQfHiC";
 $callbackUrl    = "http:/localhost:8000/callback.php";
 
 $phone  = formatPhoneNumber($_POST['phone']);
@@ -34,7 +34,7 @@ $timestamp = date('YmdHis');
 $password  = base64_encode($shortcode . $passkey . $timestamp);
 
 #---------------- GET ACCESS TOKEN ----------------#
-$tokenUrl = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
+$tokenUrl = "http://127.0.0.1:8001/oauth/v1/generate?grant_type=client_credentials";
 
 $credentials = base64_encode($consumerKey . ':' . $consumerSecret);
 
@@ -47,7 +47,7 @@ curl_close($ch);
 $accessToken = json_decode($response)->access_token;
 
 #---------------- STK PUSH ----------------#
-$stkUrl = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
+$stkUrl = "http://127.0.0.1:8001/mpesa/stkpush/v1/processrequest";
 
 $stkData = [
     "BusinessShortCode" => $shortcode,
