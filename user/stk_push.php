@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 function formatPhoneNumber($phone) {
     // Remove spaces, hyphens, brackets, +
@@ -21,11 +22,11 @@ function formatPhoneNumber($phone) {
 
     return false; // invalid number
 }
-$consumerKey    = "Tngz5JfGgMylqqfJ7F";
-$consumerSecret = "qPnOwWvuMNYzi8JIUspj0aaXIUmXaqQfWOchCN4A";
-$shortcode      = "600900"; 
-$passkey        = "QOkLiwEIF77lLtRR8s06rQvnPOB0bf6RnfT0GAcAI3OAfRtxiZnvPAGPkftQfHiC";
-$callbackUrl    = "http:/localhost:8000/callback.php";
+$consumerKey    = "t4YmLSVSZ6jrDvyzcdqGec9Bw1MJpA5i6fq7PEGHpMhScgCN";
+$consumerSecret = "eMG3UB6yFpR2CAIAITzPsaGKKaNYIEvU5jYDFyVpR1c2CGb8vgXfek422RjevhS8";
+$shortcode      = "174379"; 
+$passkey        = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+$callbackUrl    = "https://b16c-41-72-215-10.ngrok-free.app/taka/user/callback.php";
 
 $phone  = formatPhoneNumber($_POST['phone']);
 $amount = $_POST['amount'];
@@ -34,7 +35,8 @@ $timestamp = date('YmdHis');
 $password  = base64_encode($shortcode . $passkey . $timestamp);
 
 #---------------- GET ACCESS TOKEN ----------------#
-$tokenUrl = "http://127.0.0.1:8001/oauth/v1/generate?grant_type=client_credentials";
+$tokenUrl = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
+
 
 $credentials = base64_encode($consumerKey . ':' . $consumerSecret);
 
@@ -47,7 +49,7 @@ curl_close($ch);
 $accessToken = json_decode($response)->access_token;
 
 #---------------- STK PUSH ----------------#
-$stkUrl = "http://127.0.0.1:8001/mpesa/stkpush/v1/processrequest";
+$stkUrl = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
 
 $stkData = [
     "BusinessShortCode" => $shortcode,

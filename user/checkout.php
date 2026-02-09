@@ -1,4 +1,5 @@
 <?php
+session_start();
 /*if(!isset($_SESSION))
 {
     session_start();
@@ -68,6 +69,7 @@ if(isset($_POST['phone'],$_POST['amount']) && !empty($_POST['phone']) && !empty(
             <div class="button-container">
                 <button type="submit">Pay Now</button>
             </div>
+            <?php echo $_SESSION['userId']?>
 
         </div>
 
