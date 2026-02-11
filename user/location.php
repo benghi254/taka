@@ -4,13 +4,34 @@ session_start();
 
 if(!isset($_SESSION['username']))
 {
-   header("location: index.php"); 
-}
-if(isset($_SESSION['area'])){
-    header("location: start.php");
+   //header("location: index.php"); 
 }
 
+// FIXED: Check database instead of relying on session
+include_once '../modals/Database.php';
+include_once 'Faddress.php';
+
+$userId = $_SESSION['userId'] ?? null;
+$existingAddress = null;
+$isUpdate = false;
+
+// Check if user already has an address
+if($userId) {
+    $existingAddress = Faddress::getAddressInfoById($userId);
     
+    // If address exists, redirect to start page
+    if($existingAddress && !empty($existingAddress['County'])) {
+        $isUpdate = true;
+        // Optional: Set session for future checks
+        $_SESSION['area'] = true;
+    }
+}
+
+// Uncomment this to prevent re-entry completely (old behavior)
+// if($isUpdate) {
+//     header("location: start.php");
+//     exit();
+// }
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +40,9 @@ if(isset($_SESSION['area'])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>location details</title>
+    <title><?php echo $isUpdate ? 'Update Address Details' : 'Enter Address Details'; ?></title>
 
-    <link rel="stylesheet" href="../assets/style/me nu.css">
+    <link rel="stylesheet" href="../assets/style/menu.css">
     <link rel="stylesheet" href="../assets/style/main.css">
     <link rel="stylesheet" href="../assets/style/form.css">
    
@@ -39,7 +60,10 @@ if(isset($_SESSION['area'])){
              
                 <form action="newAddress.php" method="post">
                     <div class="form-title">
-                        <h2>Enter Address Details</h2>
+                        <h2><?php echo $isUpdate ? 'Update Address Details' : 'Enter Address Details'; ?></h2>
+                        <?php if($isUpdate): ?>
+                            <p style="color: #2563eb; font-size: 14px; margin-top: 5px;">You can update your address information below</p>
+                        <?php endif; ?>
                     </div>
                     <div class="err-submit">
                         <?php if(isset($_SESSION['err'])):?>
@@ -53,31 +77,32 @@ if(isset($_SESSION['area'])){
                     </div>
                     <div class="field-container">
                         <label><b>County</b></label>
-                        <input type="text" placeholder="Enter County" name="county" required>
+                        <input type="text" placeholder="Enter County" name="county" 
+                               value="<?php echo htmlspecialchars($existingAddress['County'] ?? ''); ?>" required>
 
                         <label><b>Constituency</b></label>
-                        <input type="text" placeholder="Enter Constituency" name="constituency" required>
+                        <input type="text" placeholder="Enter Constituency" name="constituency"
+                               value="<?php echo htmlspecialchars($existingAddress['Constituency'] ?? ''); ?>" required>
 
-                        <label><b>Ward</label>
-                        <input type="text" placeholder="Enter ward" name="ward" required>
+                        <label><b>Ward</b></label>
+                        <input type="text" placeholder="Enter ward" name="ward"
+                               value="<?php echo htmlspecialchars($existingAddress['Ward'] ?? ''); ?>" required>
 
                         <label><b>Description</b></label>
-                        <input type="text" placeholder="Enter Description" name="details" required>
+                        <input type="text" placeholder="Enter Description" name="details"
+                               value="<?php echo htmlspecialchars($existingAddress['Details'] ?? ''); ?>" required>
 
-                         <select  class="custom-select" name="holder" required>
+                         <select class="custom-select" name="holder" required>
                             <option value="">Select Role</option>
-                           
-                            <option value="home">Home</option>
-                            <option value="business">Business</option>
-                            <option value="Institution">Institution</option>
+                            <option value="home" <?php echo ($existingAddress['Holder'] ?? '') === 'home' ? 'selected' : ''; ?>>Home</option>
+                            <option value="business" <?php echo ($existingAddress['Holder'] ?? '') === 'business' ? 'selected' : ''; ?>>Business</option>
+                            <option value="Institution" <?php echo ($existingAddress['Holder'] ?? '') === 'Institution' ? 'selected' : ''; ?>>Institution</option>
                         </select>
 
-
-                      
                         <input type="hidden" value="<?=$_SESSION['userId'];?>" name="userId">
+                        <input type="hidden" value="<?php echo $isUpdate ? '1' : '0'; ?>" name="isUpdate">
                         
-
-                        <button type="submit">Submit</button>
+                        <button type="submit"><?php echo $isUpdate ? 'Update Address' : 'Submit'; ?></button>
 
                     </div>
 

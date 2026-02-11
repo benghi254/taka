@@ -12,14 +12,19 @@ if(isset($_POST['fullname'],$_POST['email'],$_POST['phone'],$_POST['password'],$
  
     if(FUser::checkEmail($_POST['email']))
     {
-        $res=FUser::addNewUser($user);
-        if(is_numeric($res))
+        $data=FUser::addNewUser($user);
+        if(is_numeric($data))
         {
             $_SESSION['err']="Impossible to add this Worker";
             header('Location: register.php');
         }else{
+            session_start();
             
             $_SESSION['done']="User added Successfully";
+            $_SESSION['username']=$data['fullName'];
+            $_SESSION['verified']=$data['Verified'];
+            $_SESSION['userId']=$data['userId'];
+            $_SESSION['phone']=$data['Mobile'];
             header('Location: userDashboard.php');
         }
     }else
