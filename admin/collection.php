@@ -29,9 +29,9 @@ if(!isset($_SESSION['username']))
     <?php include_once '../commons/header.php';?>
 
     <?php 
-        include_once '../modals/Fhistoric.php';
+        include_once '../modals/Ftrash.php';
 
-        $historic=Fhistoric::getAllHistoricCollection($_SESSION['dateStart'],$_SESSION['dateEnd']);
+        $historic=Ftrash::getCollectedBins($_SESSION['dateStart'],$_SESSION['dateEnd']);
         $k=0;
     ?>
        
@@ -69,38 +69,30 @@ if(!isset($_SESSION['username']))
                         <tr>
                             <th style="width: 40px">#</th>
                             <th>ID TRASH (TYPE)</th>
-                            <th style="width: 100px">AREA / ZONE</th>
-                            <th style="width: 90px">LEVEL (L)</th>
-                            <th style="width: 90px">WEIGHT (W)</th>
-                            <th style="width: 140px">DATE FULL</th>                     
-                            <th style="width: 140px">DATE EMPTIED</th>
-                            <th style="width: 160px" title="Collector agent">AGENT (ID)</th>
+                            <th style="width: 150px">AREA / ZONE</th>
+                            <th style="width: 120px">WEIGHT (Kg)</th>
+                            <th style="width: 180px">COLLECTION DATE</th>
+                            <th style="width: 100px">STATUS</th>
                         </tr>
                     </thead>
                     <tbody>
                     
                     <?php foreach ($historic as $k => $data):?>
-                    <?php
-
-                        $date_1 = new DateTime($data['dateFull']);
-                        $date_2 = new DateTime($data['dateEmpty']);
-                        $int = ($date_1->diff($date_2));
-
-                        if ($int->format('%a')>1.5 and $data['dateFull']!=null) {
-                            $color="color: red";
-                        }
-                        else $color="color: black";
-
-                    ?>
-                        <tr style="<?=$color;?>">
+                        <?php
+                            $idTrash = $data['idTrash'] ?? '';
+                            $typeTrash = $data['typeTrash'] ?? ($data['trashType'] ?? 'unspecified');
+                            $area = $data['area'] ?? ($data['Details'] ?? 'N/A');
+                            $weight = $data['Weight'] ?? ($data['weight'] ?? 0);
+                            $date = $data['issueDate'] ?? ($data['dateTrash'] ?? 'N/A');
+                            $done = $data['Done'] ?? 'yes';
+                        ?>
+                        <tr>
                             <td><?=$k+1;?></td>
-                            <td><?=$data['idTrash']." (".ucfirst($data['typeTrash']).")";?></td>
-                            <td><?=$data['area'];?></td>
-                            <td><?=$data['level'];?>%</td>
-                            <td><?=$data['weight'];?>Kg</td>
-                            <td><?=$data['dateFull'];?></td>
-                            <td><?=$data['dateEmpty'];?></td>
-                            <td><?=ucfirst($data['lastname'])." (".$data['idUser'].")";?></td>
+                            <td><?=$idTrash." (".ucfirst($typeTrash).")";?></td>
+                            <td><?=$area;?></td>
+                            <td><?=$weight;?> Kg</td>
+                            <td><?=$date;?></td>
+                            <td><?=ucfirst($done);?></td>
                         </tr>
                         
                     <?php endforeach;?>    
@@ -113,9 +105,9 @@ if(!isset($_SESSION['username']))
                             <th style="width: 200px">STARTING DATE</th>
                             <th>ENDING DATE</th>
                             <th style="width: 150px">TOTAL BIN</th>
-                            <th style="width: 150px">TOLAL WEIGHT</th>
+                            <th style="width: 150px">TOTAL WEIGHT</th>
                             <th style="width: 150px" title="Average weight Per Bin">AVER. W /BIN</th>
-                            <th style="width: 150px" title="Average level Per Bin">AVER. L /BIN</th>            
+                            <th style="width: 150px" title="Average level Per Bin">STATUS</th>            
                         </tr>                        
                     </thead> 
                     <tbody>
@@ -126,7 +118,7 @@ if(!isset($_SESSION['username']))
                             <th id="tBin"></th>
                             <th id="tKg"></th>
                             <th id="aKg"></th>
-                            <th id="aLevel"></th>
+                            <th id="aLevel">COLLECTED</th>
                         </tr>
                     </tbody>                   
                 </table>
@@ -149,7 +141,7 @@ if(!isset($_SESSION['username']))
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");
 
-        // Filter and Kg and level sum calculation
+        // Filter and Kg sum calculation
 
         var list=[];
         for (i = 0; i < tr.length; i++) {
@@ -160,8 +152,7 @@ if(!isset($_SESSION['username']))
                     tr[i].style.display = "";
 
                     // Average calculation
-                    totalKg = totalKg + parseInt(table.rows[i].cells[4].innerHTML);
-                    totalLevel= totalLevel + parseInt(table.rows[i].cells[3].innerHTML);
+                    totalKg = totalKg + parseInt(table.rows[i].cells[3].innerHTML);
 
                     if (!(list.includes(table.rows[i].cells[1].innerHTML))) {
                         list.push(table.rows[i].cells[1].innerHTML);
@@ -176,8 +167,7 @@ if(!isset($_SESSION['username']))
 
         document.getElementById("tKg").innerHTML = parseInt(totalKg)+"Kg";
         document.getElementById("tBin").innerHTML = parseInt(list.length); 
-        document.getElementById("aKg").innerHTML = parseInt(totalKg/list.length)+"Kg";
-        document.getElementById("aLevel").innerHTML = parseInt(totalLevel/list.length)+"%"; 
+        document.getElementById("aKg").innerHTML = list.length > 0 ? parseInt(totalKg/list.length)+"Kg" : "0Kg";
     }
    
             

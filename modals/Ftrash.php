@@ -76,4 +76,13 @@ class Ftrash
         $req->execute(array($idTrash));
     }
 
+    static function getCollectedBins($dateStart, $dateEnd)
+    {
+        $con = Database::getConnection();
+        // Using 'yes' as per user request, though dashboard uses 'True'
+        $req = $con->prepare("SELECT * FROM trash WHERE Done = 'yes' AND DATE(issueDate) BETWEEN ? AND ? ORDER BY issueDate DESC");
+        $req->execute(array($dateStart, $dateEnd));
+        return $req->fetchAll();
+    }
+
 }
