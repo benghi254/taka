@@ -106,7 +106,7 @@ class Fhistoric
     {   // Get all trash no emptied since the first garbage has been thrown in for status   monitoring
 
         $con=Database::getConnection();
-        $req=$con->prepare('SELECT * FROM historic c,trash t WHERE c.idTrash=t.idTrash AND dateEmpty IS NULL');
+        $req=$con->prepare('SELECT * FROM historic c,trash t WHERE c.idTrash=t.trashId AND dateEmpty IS NULL');
         $req->execute(array());
 
         return $req->fetchAll();
@@ -116,7 +116,7 @@ class Fhistoric
     {   // Get all trash that need to be collected (full)
 
         $con=Database::getConnection();
-        $req=$con->prepare('SELECT * FROM historic c,trash t WHERE c.idTrash=t.idTrash AND dateFull IS NOT NULL AND dateEmpty IS NULL ORDER BY dateFull ASC');
+        $req=$con->prepare('SELECT * FROM historic c,trash t WHERE c.idTrash=t.trashId AND dateFull IS NOT NULL AND dateEmpty IS NULL ORDER BY dateFull ASC');
         $req->execute(array());
 
         return $req->fetchAll();
