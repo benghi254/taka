@@ -9,6 +9,7 @@
         <a href="map.php">Map view</a>
         <a href="alert.php">Alert</a>
         <a href="report.php">Daily Report</a>
+        <a href="listUser.php">Users</a>
 
         <?php if ($_SESSION['role']=="admin"):?>
             <a href="trash.php">Trash bin</a>
