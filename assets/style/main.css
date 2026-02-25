@@ -1,7 +1,13 @@
+:root {
+  --sidebar-width: 230px;
+}
 
 body {background-color: #f4f4f2;}
 
-.ml-24 {margin-left: 220px;}
+.ml-24 {
+  margin-left: var(--sidebar-width);
+  transition: margin-left 0.3s;
+}
 
 .body-container {
 	margin-top: 80px;
