@@ -26,7 +26,7 @@ $consumerKey    = "t4YmLSVSZ6jrDvyzcdqGec9Bw1MJpA5i6fq7PEGHpMhScgCN";
 $consumerSecret = "eMG3UB6yFpR2CAIAITzPsaGKKaNYIEvU5jYDFyVpR1c2CGb8vgXfek422RjevhS8";
 $shortcode      = "174379"; 
 $passkey        = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
-$callbackUrl    = "https://72db-41-72-215-10.ngrok-free.app/taka/user/callback.php";
+$callbackUrl    = "https://b728-41-72-215-10.ngrok-free.app/taka/user/callback.php";
 
 $phone  = formatPhoneNumber($_POST['phone']);
 $amount = $_POST['amount'];

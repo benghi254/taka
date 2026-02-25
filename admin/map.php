@@ -94,8 +94,9 @@ $trashBins = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </div>
 
   <script>
-    // Initialize map centered on Kenya (Nairobi)
-    var map = L.map('map').setView([-1.2921, 36.8219], 10);
+    // Initialize map centered on Nairobi, Kenya
+    var nairobiCenter = [-1.286389, 36.817223];
+    var map = L.map('map').setView(nairobiCenter, 13);
 
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -107,16 +108,19 @@ $trashBins = $stmt->fetchAll(PDO::FETCH_ASSOC);
     var addresses = <?php echo json_encode($addresses); ?>;
     var trashBins = <?php echo json_encode($trashBins); ?>;
 
+    // Feature group to hold all markers for bounds fitting
+    var markersGroup = new L.featureGroup().addTo(map);
+
     // Add markers for user addresses
     addresses.forEach(function(addr) {
-      if(addr.latitude && addr.longitude) {
+      if(addr.latitude && addr.longitude && !isNaN(parseFloat(addr.latitude)) && !isNaN(parseFloat(addr.longitude))) {
         var marker = L.marker([parseFloat(addr.latitude), parseFloat(addr.longitude)], {
           icon: L.divIcon({
             className: 'address-marker',
-            html: '<div style="background: #2563eb; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>',
-            iconSize: [20, 20]
+            html: '<div style="background: #2563eb; width: 22px; height: 22px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>',
+            iconSize: [22, 22]
           })
-        }).addTo(map);
+        });
 
         var popupContent = '<div style="min-width: 200px;">' +
           '<strong>User Address</strong><br>' +
@@ -132,19 +136,20 @@ $trashBins = $stmt->fetchAll(PDO::FETCH_ASSOC);
           '</div>';
         
         marker.bindPopup(popupContent);
+        markersGroup.addLayer(marker);
       }
     });
 
     // Add markers for trash bins
     trashBins.forEach(function(trash) {
-      if(trash.lat && trash.longi) {
+      if(trash.lat && trash.longi && !isNaN(parseFloat(trash.lat)) && !isNaN(parseFloat(trash.longi))) {
         var marker = L.marker([parseFloat(trash.lat), parseFloat(trash.longi)], {
           icon: L.divIcon({
             className: 'trash-marker',
-            html: '<div style="background: #ef4444; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>',
-            iconSize: [20, 20]
+            html: '<div style="background: #ef4444; width: 22px; height: 22px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>',
+            iconSize: [22, 22]
           })
-        }).addTo(map);
+        });
 
         var popupContent = '<div style="min-width: 200px;">' +
           '<strong>Trash Bin</strong><br>' +
@@ -155,23 +160,14 @@ $trashBins = $stmt->fetchAll(PDO::FETCH_ASSOC);
           '</div>';
         
         marker.bindPopup(popupContent);
+        markersGroup.addLayer(marker);
       }
     });
 
-    // Fit map to show all markers
-    if(addresses.length > 0 || trashBins.length > 0) {
-      var group = new L.featureGroup();
-      addresses.forEach(function(addr) {
-        if(addr.latitude && addr.longitude) {
-          group.addLayer(L.marker([parseFloat(addr.latitude), parseFloat(addr.longitude)]));
-        }
-      });
-      trashBins.forEach(function(trash) {
-        if(trash.lat && trash.longi) {
-          group.addLayer(L.marker([parseFloat(trash.lat), parseFloat(trash.longi)]));
-        }
-      });
-      map.fitBounds(group.getBounds().pad(0.1));
+
+    // Fit map to show all markers if any exist
+    if(markersGroup.getLayers().length > 0) {
+      map.fitBounds(markersGroup.getBounds().pad(0.1), { maxZoom: 15 });
     }
   </script>
 </body>
