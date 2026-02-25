@@ -9,10 +9,7 @@
         <a href="report.php">Daily Report</a>
         <a href="listUser.php">Users</a>
 
-        <?php if ($_SESSION['role']=="admin"):?>
-            <a href="trash.php">Trash bin</a>
-        <?php endif;?>
-
+    
         <?php if ($_SESSION['role']=="admin" || $_SESSION['role']=="admin-cont"):?>
             <a href="partner.php">Worker & Contrator</a>
             <a href="admin.php">Admin</a>
