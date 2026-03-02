@@ -1,11 +1,5 @@
-<?php
-session_start();
+include_once '../commons/auth.php';
 include_once '../modals/Database.php';
-
-if(!isset($_SESSION['username']))
-{
-   header("location: index.php"); 
-}
 
 $conn = Database::getConnection();
 

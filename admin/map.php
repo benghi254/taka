@@ -2,11 +2,7 @@
 session_start();
 include_once '../modals/Database.php';
 include_once '../modals/FaddressGeo.php';
-
-if(!isset($_SESSION['username']))
-{
-   header("location: index.php"); 
-}
+include_once '../commons/auth.php';
 
 $conn = Database::getConnection();
 

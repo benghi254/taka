@@ -1,11 +1,4 @@
-<?php
-
-session_start();
-
-if(!isset($_SESSION['username']))
-{
-   //header("location: index.php"); 
-}
+include_once '../commons/auth.php';
 
 // FIXED: Check database instead of relying on session
 include_once '../modals/Database.php';

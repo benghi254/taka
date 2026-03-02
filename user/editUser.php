@@ -1,14 +1,5 @@
 <?php
-
-session_start();
-
-if(!isset($_SESSION['username']))
-    {
-  // header("location: index.php");
-  echo "what is your name"; 
-}
-
-    
+include_once '../commons/auth.php';
 ?>
 
 <!DOCTYPE html>

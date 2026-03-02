@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once '../commons/auth.php';
 
 function formatPhoneNumber($phone) {
     // Remove spaces, hyphens, brackets, +

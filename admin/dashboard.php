@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+include_once '../commons/auth.php';
 include_once '../modals/Database.php';
 $conn=Database::getConnection();
 
@@ -28,12 +28,6 @@ $stmt = $conn->prepare("SELECT COUNT(*) FROM trash");
 $stmt->execute();
 $totalTrashBins = $stmt->fetchColumn();
 
-if(!isset($_SESSION['username']))
-{
-   header("location: index.php"); 
-}
-
-    
 ?>
 
 <!DOCTYPE html>

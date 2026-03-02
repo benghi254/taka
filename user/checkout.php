@@ -1,9 +1,5 @@
 <?php
-session_start();
-/*if(!isset($_SESSION))
-{
-    session_start();
-}*/
+include_once '../commons/auth.php';
 
 
 if(isset($_POST['phone'],$_POST['amount']) && !empty($_POST['phone']) && !empty($_POST['amount']))

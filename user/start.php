@@ -1,17 +1,7 @@
-<?php
-
-session_start();
-
-if(!isset($_SESSION['username']))
-{
-   //header("location: index.php"); 
-}
+include_once '../commons/auth.php';
 if(!isset($_SESSION['area'])){
     header("location: location.php");
 }
-
-    
-?>
 
 
 <!DOCTYPE html>

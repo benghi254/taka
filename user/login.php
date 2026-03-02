@@ -1,8 +1,10 @@
 <?php
+session_set_cookie_params(0);
 if(!isset($_SESSION))
 {
     session_start();
 }
+$_SESSION['LAST_ACTIVITY'] = time();
 
 
 if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empty($_POST['password']))
