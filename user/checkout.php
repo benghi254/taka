@@ -1,34 +1,5 @@
 <?php
 include_once '../commons/auth.php';
-
-
-if(isset($_POST['phone'],$_POST['amount']) && !empty($_POST['phone']) && !empty($_POST['amount']))
-{
-    include_once 'Fuser.php';
-
-    $data=Fuser::login($_POST['email'],$_POST['password']);
-
-    if(!$data)
-    {
-        $_SESSION['err']="Username or Password invalid";
-        echo $_SESSION;
-        //header('Location: ../login.php');
-    }else{
-        session_start();
-        $_SESSION['username']=$data['fullname'];
-        $_SESSION['verified']=$data['Verified'];
-        $_SESSION['userId']=$data['userId'];
-        $_SESSION['phone']=$data['Mobile'];
-        
-
-        header('Location: userDashboard.php');
-    }
-    header('Location: userDashboard.php');
-}else
-/*{
-    $_SESSION['err']="Please complete all fill";
-    header('Location: userLogin.php');
-}*/
 ?>
 <!DOCTYPE html>
 <html lang="en">

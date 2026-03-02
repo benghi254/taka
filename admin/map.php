@@ -1,8 +1,7 @@
 <?php
-session_start();
+include_once '../commons/auth.php';
 include_once '../modals/Database.php';
 include_once '../modals/FaddressGeo.php';
-include_once '../commons/auth.php';
 
 $conn = Database::getConnection();
 

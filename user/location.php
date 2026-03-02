@@ -1,3 +1,4 @@
+<?php
 include_once '../commons/auth.php';
 
 // FIXED: Check database instead of relying on session

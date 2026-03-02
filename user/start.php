@@ -1,3 +1,4 @@
+<?php
 include_once '../commons/auth.php';
 if(!isset($_SESSION['area'])){
     header("location: location.php");
