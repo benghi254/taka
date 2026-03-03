@@ -1,5 +1,6 @@
 <?php
 include_once '../commons/auth.php';
+?>
 
 include_once '../modals/Database.php';
 

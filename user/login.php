@@ -1,7 +1,6 @@
 <?php
 session_set_cookie_params(0);
-if(!isset($_SESSION))
-{
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $_SESSION['LAST_ACTIVITY'] = time();
@@ -17,10 +16,10 @@ if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empt
     if(!$data)
     {
         $_SESSION['err']="Username or Password invalid";
-        echo "<div><p>login error</p></div>" ;
-        //header('Location: userLogin.php');
+        header('Location: userLogin.php');
+        exit();
     }else{
-        $_SESSION['username']=$data['fullName'];
+        $_SESSION['username']=$data['fullname'];
         $_SESSION['verified']=$data['Verified'];
         $_SESSION['userId']=$data['userId'];
         $_SESSION['phone']=$data['Mobile'];
@@ -31,14 +30,15 @@ if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empt
             $_SESSION['area']=$addr['Ward'];
             $_SESSION['details']=$addr['Details'];
             $_SESSION['type']=$addr['Holder'];
-
-            header('location: userDashboard.php');
         }
 
         header('Location: userDashboard.php');
+        exit();
     }
 }else
 {
-    $_SESSION['err']="Please complete all fill";
+    $_SESSION['err']="Please complete all fields";
     header('Location: userLogin.php');
+    exit();
 }
+?>

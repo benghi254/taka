@@ -45,10 +45,7 @@ if($userId) {
     $stmt->execute([$userId]);
     $recentOrders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-    
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
