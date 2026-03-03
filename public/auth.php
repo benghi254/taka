@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(0);
 if(!isset($_SESSION))
 {
     session_start();
@@ -22,7 +23,8 @@ if(isset($_POST['login'],$_POST['password']) && !empty($_POST['login']) && !empt
         $data = Fuser::login($login, $password);
         
         if($data) {
-            $_SESSION['username']=$data['fullName'];
+            $_SESSION['LAST_ACTIVITY'] = time();
+            $_SESSION['username']=$data['fullname'];
             $_SESSION['verified']=$data['Verified'];
             $_SESSION['userId']=$data['userId'];
             $_SESSION['phone']=$data['Mobile'];
@@ -43,6 +45,7 @@ if(isset($_POST['login'],$_POST['password']) && !empty($_POST['login']) && !empt
         $data = Fadmin::login($login, $password);
         
         if($data) {
+            $_SESSION['LAST_ACTIVITY'] = time();
             $_SESSION['username']=$data['username'];
             $_SESSION['fullname']=$data['lastname']." ".$data['firstname'];
             $_SESSION['role']=$data['role'];
