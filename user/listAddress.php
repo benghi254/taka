@@ -9,7 +9,7 @@ include_once '../commons/auth.php';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Worker-List</title>
+    <title>Address-List</title>
 
     <link rel="stylesheet" href="../assets/style/menu.css">
     <link rel="stylesheet" href="../assets/style/main.css">
@@ -24,7 +24,7 @@ include_once '../commons/auth.php';
     
     <?php include_once 'Faddress.php';
 
-        $add=Faddress::getAllAddress();
+        $add=Faddress::getAddressByUserId($_SESSION['userId']);
     ?>
 
 
@@ -50,6 +50,7 @@ include_once '../commons/auth.php';
                         <th style="width: 120px">Ward</th>
                         <th style="width: 180px">Description</th>                   
                         <th style="width: 150px">Holder</th>
+                        <th style="width: 150px">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -63,8 +64,8 @@ include_once '../commons/auth.php';
                             <td><?=$address['Details'];?></td>
                             <td><?=$address['Holder'];?></td>
                             <td>                               
-                                <a class="btn btn-primary" href="editWorker.php?idWorker=<?=$address['userId'];?>">Edit</a>
-                                <a class="btn btn-danger" href="../controllers/deleteWorker.php?idWorker=<?=$address['userId'];?>">Delete</a>                               
+                                <a class="btn btn-primary" href="location.php?idAddress=<?=$address['AddressId'];?>">Edit</a>
+                                <a class="btn btn-danger" href="../controllers/deleteAddress.php?idAddress=<?=$address['AddressId'];?>">Delete</a>                               
                             </td>
                         </tr>
                     <?php endforeach;?>

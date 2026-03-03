@@ -88,6 +88,14 @@ class Faddress
         return $req->fetchAll();
     }
 
+    static function getAddressByUserId($userId)
+    {   // Function to get all addresses for a specific user
+        $con = Database::getConnection();
+        $req = $con->prepare('SELECT * FROM address WHERE userId = ?');
+        $req->execute(array($userId));
+        return $req->fetchAll();
+    }
+
 
 
     static function getAddressInfoById($userId)
