@@ -31,6 +31,16 @@ $callbackUrl    = "https://b728-41-72-215-10.ngrok-free.app/taka/user/callback.p
 $phone  = formatPhoneNumber($_POST['phone']);
 $amount = $_POST['amount'];
 
+// Direct order insertion as requested
+include_once '../modals/Database.php';
+$conn = Database::getConnection();
+try {
+    $stmt = $conn->prepare('INSERT INTO orders (PhoneNumber, Amount, userId) VALUES (?, ?, ?)');
+    $stmt->execute([$_POST['phone'], $_POST['amount'], $_SESSION['userId']]);
+} catch (PDOException $e) {
+    // Fail silently or log error
+}
+
 $timestamp = date('YmdHis');
 $password  = base64_encode($shortcode . $passkey . $timestamp);
 
