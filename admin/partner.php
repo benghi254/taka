@@ -2,9 +2,6 @@
 include_once '../commons/auth.php';
 ?>
 
-    
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
