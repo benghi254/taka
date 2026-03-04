@@ -23,39 +23,34 @@ if ($resultCode == 0) {
     $CheckoutRequestID = $response['Body']['stkCallback']['CheckoutRequestID'];
     $ResultDesc = $response['Body']['stkCallback']['ResultDesc'];
 
-    // Get userId from phone number
     $conn = Database::getConnection();
     
-    // Format phone number to match database format (remove 254 prefix if present)
-    $phoneFormatted = preg_replace('/^254/', '0', $PhoneNumber);
-    
-    // Try to find user by phone number
-    $stmt = $conn->prepare('SELECT userId FROM user WHERE Mobile = ? OR Mobile = ? LIMIT 1');
-    $stmt->execute([$PhoneNumber, $phoneFormatted]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    $userId = $user ? $user['userId'] : null;
-    
-    // Save order to database with correct column names
+    // Update the existing order record using CheckoutRequestID
     try {
-        $stmt = $conn->prepare('INSERT INTO orders (TransactionDate, MerchantRequestID, CheckoutRequestID, ResultCode, ResultDesc, MpesaCode, PhoneNumber, Amount, userId) 
-                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+        $stmt = $conn->prepare('UPDATE orders SET 
+                                TransactionDate = ?, 
+                                ResultCode = ?, 
+                                ResultDesc = ?, 
+                                MpesaCode = ? 
+                                WHERE CheckoutRequestID = ?');
+        
+        // Format M-Pesa date (YmdHis) to DB format (Y-m-d)
+        $dt = DateTime::createFromFormat('YmdHis', $TransactionDate);
+        $finalDate = $dt ? $dt->format('Y-m-d') : date('Y-m-d');
+
         $stmt->execute([
-            $TransactionDate,
-            $MerchantRequestID,
-            $CheckoutRequestID,
+            $finalDate,
             $resultCode,
             $ResultDesc,
             $MpesaCode,
-            $PhoneNumber,
-            $Amount,
-            $userId
+            $CheckoutRequestID
         ]);
         
         // Log success
-        file_put_contents("order_success.log", "Order saved: Receipt $MpesaCode, Amount $Amount, Phone: $PhoneNumber, UserId: " . ($userId ?? 'N/A') . PHP_EOL, FILE_APPEND);
+        file_put_contents("order_success.log", "Order updated: Receipt $MpesaCode, Phone: $PhoneNumber, CheckoutID: $CheckoutRequestID" . PHP_EOL, FILE_APPEND);
     } catch (PDOException $e) {
         // Log error
-        file_put_contents("order_error.log", "Error saving order: " . $e->getMessage() . PHP_EOL, FILE_APPEND);
+        file_put_contents("order_error.log", "Error updating order: " . $e->getMessage() . PHP_EOL, FILE_APPEND);
     }
 }
 ?>

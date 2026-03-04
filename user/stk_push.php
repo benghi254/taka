@@ -47,7 +47,6 @@ $password  = base64_encode($shortcode . $passkey . $timestamp);
 #---------------- GET ACCESS TOKEN ----------------#
 $tokenUrl = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
 
-
 $credentials = base64_encode($consumerKey . ':' . $consumerSecret);
 
 $ch = curl_init($tokenUrl);
@@ -86,5 +85,14 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
 curl_close($ch);
 
-//echo $result;
+$res = json_decode($result);
+if (isset($res->ResponseCode) && $res->ResponseCode == "0") {
+    $checkoutRequestID = $res->CheckoutRequestID;
+    $merchantRequestID = $res->MerchantRequestID;
+
+    // Update the record we inserted earlier
+    $stmt = $conn->prepare('UPDATE orders SET MerchantRequestID = ?, CheckoutRequestID = ? WHERE PhoneNumber = ? AND Amount = ? AND CheckoutRequestID = "" ORDER BY orderId DESC LIMIT 1');
+    $stmt->execute([$merchantRequestID, $checkoutRequestID, $_POST['phone'], $_POST['amount']]);
+}
+
 header("location: checkout_succes.php");
