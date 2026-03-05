@@ -1,7 +1,7 @@
 <?php
 
-include_once '../modals/Database.php';
-include_once '../modals/GeocodingService.php';
+include_once __DIR__ . '/Database.php';
+include_once __DIR__ . '/GeocodingService.php';
 
 class FaddressGeo
 {

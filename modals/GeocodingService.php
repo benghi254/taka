@@ -75,7 +75,7 @@ class GeocodingService
     }
     
     /**
-     * Geocode address components
+     * Geocode address components with fallbacks
      * 
      * @param string $county
      * @param string $constituency
@@ -85,8 +85,26 @@ class GeocodingService
      */
     static function geocodeAddressComponents($county, $constituency, $ward, $details)
     {
+        // Try original specific address
         $fullAddress = self::buildFullAddress($county, $constituency, $ward, $details);
-        return self::geocodeAddress($fullAddress);
+        $result = self::geocodeAddress($fullAddress);
+        if ($result) return $result;
+
+        // Try without details
+        $fullAddress = self::buildFullAddress($county, $constituency, $ward, '');
+        $result = self::geocodeAddress($fullAddress);
+        if ($result) return $result;
+
+        // Try just ward and county
+        $fullAddress = self::buildFullAddress($county, '', $ward, '');
+        $result = self::geocodeAddress($fullAddress);
+        if ($result) return $result;
+
+        // Final try: just county and Kenya
+        $fullAddress = self::buildFullAddress($county, '', '', '');
+        $result = self::geocodeAddress($fullAddress);
+        
+        return $result;
     }
 }
 
