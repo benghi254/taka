@@ -10,7 +10,7 @@ class Ftrash
     {   //Function to add a new user to the system
 
         $con=Database::getConnection();
-        $req=$con->prepare('INSERT INTO trash(Weight,collectDay,Ward,Details,trashType,userId) VALUES(?,?,?,?,?,?)');
+        $req=$con->prepare('INSERT INTO trash(Weight,collectDay,Ward,Details,typeTrash,userId) VALUES(?,?,?,?,?,?)');
         $req->execute(array(
             $trash->getWeight(),
             $trash->getCollectDate(),
@@ -27,13 +27,14 @@ class Ftrash
     {   // Function to update a specific user
 
         $con=Database::getConnection();
-        $req=$con->prepare('UPDATE trash SET Weight=?,collectDay=?,Ward=?,Details=?,issueDate=?,trashType=?,userId=? WHERE trashId=?');
+        $req=$con->prepare('UPDATE trash SET Weight=?,collectDay=?,Ward=?,Details=?,issueDate=?,typeTrash=?,userId=? WHERE _idTrash=?');
         $req->execute(array(
             $trash->getWeight(),
             $trash->getCollectDate(),
             $trash->getWard(),
             $trash->getDescription(),
             $trash->getIssueDate(),
+            $trash->getTrashType(),
             $trash->getUserId(),
             $trash->getTrashId()
         ));
@@ -55,7 +56,7 @@ class Ftrash
     {   // Function to get all the contractor admin
 
         $con=Database::getConnection();
-        $req=$con->prepare('SELECT FROM trash where trashId=?');
+        $req=$con->prepare('SELECT * FROM trash where _idTrash=?');
         $req->execute(array($trashId));
         return $req->fetch();
     }
@@ -86,7 +87,7 @@ class Ftrash
     {   // Function to delete an admin from the system
 
         $con=Database::getConnection();
-        $req=$con->prepare('DELETE FROM address WHERE trashId=?');
+        $req=$con->prepare('DELETE FROM trash WHERE _idTrash=?');
         $req->execute(array($trashId));
 
     }

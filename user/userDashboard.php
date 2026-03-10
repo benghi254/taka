@@ -26,7 +26,7 @@ if($userId) {
     $totalOrders = $stmt->fetchColumn();
     
     // Total amount spent
-    $stmt = $conn->prepare("SELECT IFNULL(SUM(amount), 0) FROM orders WHERE userId = ? ");
+    $stmt = $conn->prepare("SELECT IFNULL(SUM(Amount), 0) FROM orders WHERE userId = ? ");
     $stmt->execute([$userId]);
     $totalSpent = $stmt->fetchColumn();
     
@@ -41,7 +41,7 @@ if($userId) {
     $completedPickups = $stmt->fetchColumn();
     
     // Recent orders (last 5)
-    $stmt = $conn->prepare("SELECT * FROM orders WHERE userId = ? ORDER BY transactionDate DESC LIMIT 5");
+    $stmt = $conn->prepare("SELECT * FROM orders WHERE userId = ? ORDER BY TransactionDate DESC LIMIT 5");
     $stmt->execute([$userId]);
     $recentOrders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -229,13 +229,13 @@ if($userId) {
                     <?php foreach($recentOrders as $order): ?>
                     <div class="order-item">
                         <div>
-                            <strong>KES <?php echo number_format($order['amount'], 2); ?></strong>
-                            <div class="order-date"><?php echo date('M d, Y H:i', strtotime($order['transactionDate'])); ?></div>
+                            <strong>KES <?php echo number_format($order['Amount'], 2); ?></strong>
+                            <div class="order-date"><?php echo date('M d, Y', strtotime($order['TransactionDate'])); ?></div>
                         </div>
                         <div>
-                            <span style="color: #22c55e; font-weight: bold;"><?php echo strtoupper($order['status']); ?></span>
-                            <?php if($order['receiptNumber']): ?>
-                            <div style="font-size: 12px; color: #666;">Receipt: <?php echo htmlspecialchars($order['receiptNumber']); ?></div>
+                            <span style="color: #22c55e; font-weight: bold;"><?php echo strtoupper($order['ResultDesc'] ?? 'PENDING'); ?></span>
+                            <?php if($order['MpesaCode']): ?>
+                            <div style="font-size: 12px; color: #666;">Receipt: <?php echo htmlspecialchars($order['MpesaCode']); ?></div>
                             <?php endif; ?>
                         </div>
                     </div>

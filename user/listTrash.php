@@ -61,12 +61,12 @@ include_once '../commons/auth.php';
                             <td><?=$trah['Weight'];?></td>
                             <td><?=$trah['collectDay'];?></td>
                             <td><?=$trah['Details'];?></td>
-                            <td><?=$trah['trashType'];?></td>                            
+                            <td><?=$trah['typeTrash'];?></td>                            
                             <td><?=$trah['issueDate'];?></td>
                             <td><?=$trah['Done'];?></td>
                             <td>                               
-                                <a class="btn btn-primary" href="../admin/editTrash.php?idTrash=<?=$trah['trashId'];?>">Edit</a><br>
-                                <a class="btn btn-danger" href="../controllers/deleteTrash.php?idTrash=<?=$trah['trashId'];?>">Delete</a>                               
+                                <a class="btn btn-primary" href="../admin/editTrash.php?idTrash=<?=$trah['_idTrash'];?>">Edit</a><br>
+                                <a class="btn btn-danger" href="../controllers/deleteTrash.php?idTrash=<?=$trah['_idTrash'];?>">Delete</a>                               
                             </td>
                         </tr>
                     <?php endforeach;?>
