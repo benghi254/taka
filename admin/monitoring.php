@@ -130,7 +130,7 @@ foreach($wasteTypeData as $row) {
                     <h3>System Workflow Structure</h3>
                     <div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
                         <pre class="mermaid">
-                            graph TD
+                            graph LR
                                 A[Admin] -->|Supervises| B(Contractors)
                                 B -->|Assigned To| C{Areas / Regions}
                                 B -->|Manages| D(Workers)
