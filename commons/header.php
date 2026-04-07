@@ -25,4 +25,14 @@ document.getElementById('sidebarToggle').addEventListener('click', function() {
         navbar.classList.toggle('active');
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.success-submit, .err-submit').forEach(el => {
+        if (!el.textContent.trim()) {
+            el.style.display = 'none';
+        } else {
+            el.classList.add('show-popup');
+        }
+    });
+});
 </script>

@@ -102,8 +102,17 @@ span.psw {
     text-align: center;
     padding: 12px;
     border-radius: 6px;
-    margin-bottom: 15px;
     font-weight: 500;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    min-width: 250px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
 }
 
 .err-submit {
@@ -113,8 +122,23 @@ span.psw {
     text-align: center;
     padding: 12px;
     border-radius: 6px;
-    margin-bottom: 15px;
     font-weight: 500;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    min-width: 250px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
+}
+
+.success-submit.show-popup, .err-submit.show-popup {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 /* ================= FORM MOBILE RESPONSIVENESS ================= */
 
