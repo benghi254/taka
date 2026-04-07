@@ -54,25 +54,27 @@ if($userId) {
     <title>DashBoard</title>
     <link rel="stylesheet" href="../assets/style/menu.css">
     <link rel="stylesheet" href="../assets/style/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .profile-section {
             background: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
         }
         .profile-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             padding-bottom: 20px;
-            border-bottom: 2px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
         }
         .profile-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
             background: #2563eb;
             color: white;
             display: flex;
@@ -81,69 +83,162 @@ if($userId) {
             font-size: 32px;
             font-weight: bold;
             margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
         }
         .profile-info h2 {
             margin: 0 0 5px 0;
-            color: #333;
+            color: #2c3e50;
+            font-size: 24px;
         }
         .profile-info p {
-            margin: 5px 0;
-            color: #666;
+            margin: 3px 0;
+            color: #7f8c8d;
+            font-size: 14px;
         }
+
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
         }
         .stat-card {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            gap: 15px;
+            border-left: 5px solid #ccc;
         }
-        .stat-card h3 {
-            margin: 0 0 10px 0;
-            color: #666;
-            font-size: 14px;
-            font-weight: normal;
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
-        .stat-card .stat-value {
-            font-size: 28px;
-            font-weight: bold;
-            color: #2563eb;
+        .icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            flex-shrink: 0;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
+        .stat-icon {
+            font-size: 24px;
+        }
+        .stat-content {
+            flex-grow: 1;
+        }
+        .stat-content h3 {
+            margin: 0 0 5px 0;
+            font-size: 13px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .stat-content .stat-value {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .stat-card.orders { border-color: #2980b9; }
+        .stat-card.orders .icon-wrapper { background-color: #2980b9; }
+        
+        .stat-card.spent { border-color: #27ae60; }
+        .stat-card.spent .icon-wrapper { background-color: #27ae60; }
+        
+        .stat-card.requests { border-color: #d35400; }
+        .stat-card.requests .icon-wrapper { background-color: #d35400; }
+        
+        .stat-card.completed { border-color: #8e44ad; }
+        .stat-card.completed .icon-wrapper { background-color: #8e44ad; }
+
         .info-section {
-            margin-top: 20px;
+            margin-top: 25px;
+            background: #fcfcfc;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #f0f0f0;
         }
         .info-row {
             display: flex;
-            padding: 10px 0;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
         }
+        .info-row:last-child { border-bottom: none; }
         .info-label {
-            font-weight: bold;
-            width: 150px;
-            color: #666;
+            font-weight: 600;
+            width: 140px;
+            color: #7f8c8d;
+            font-size: 14px;
         }
         .info-value {
-            color: #333;
+            color: #2c3e50;
+            font-size: 14px;
         }
+        
         .recent-orders {
-            margin-top: 20px;
+            margin-top: 30px;
         }
         .order-item {
-            padding: 10px;
-            background: #f8f9fa;
-            margin-bottom: 10px;
-            border-radius: 5px;
+            padding: 15px;
+            background: #fff;
+            margin-bottom: 12px;
+            border-radius: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border: 1px solid #f0f0f0;
+            transition: background 0.2s;
         }
+        .order-item:hover { background: #fdfdfd; }
         .order-date {
-            color: #666;
+            color: #95a5a6;
             font-size: 12px;
+            margin-top: 3px;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .action-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+            gap: 15px;
+            border: 1px solid #eaeaea;
+        }
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-color: #3498db;
+            color: #3498db;
+        }
+        .action-card i {
+            font-size: 40px;
+            color: inherit;
+        }
+        .action-card span {
+            font-size: 16px;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -175,21 +270,41 @@ if($userId) {
                 
                 <!-- Statistics -->
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>Total Orders</h3>
-                        <div class="stat-value"><?php echo $totalOrders ?? 0; ?></div>
+                    <div class="stat-card orders">
+                        <div class="icon-wrapper">
+                            <i class="fa-solid fa-basket-shopping stat-icon"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Orders</h3>
+                            <div class="stat-value"><?php echo $totalOrders ?? 0; ?></div>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <h3>Total Spent</h3>
-                        <div class="stat-value">KES <?php echo number_format($totalSpent ?? 0, 2); ?></div>
+                    <div class="stat-card spent">
+                        <div class="icon-wrapper">
+                            <i class="fa-solid fa-coins stat-icon"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Spent</h3>
+                            <div class="stat-value">KES <?php echo number_format($totalSpent ?? 0, 2); ?></div>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <h3>Pickup Requests</h3>
-                        <div class="stat-value"><?php echo $totalPickups ?? 0; ?></div>
+                    <div class="stat-card requests">
+                        <div class="icon-wrapper">
+                            <i class="fa-solid fa-truck-ramp-box stat-icon"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Pickup Requests</h3>
+                            <div class="stat-value"><?php echo $totalPickups ?? 0; ?></div>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <h3>Completed Pickups</h3>
-                        <div class="stat-value"><?php echo $completedPickups ?? 0; ?></div>
+                    <div class="stat-card completed">
+                        <div class="icon-wrapper">
+                            <i class="fa-solid fa-circle-check stat-icon"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Completed Pickups</h3>
+                            <div class="stat-value"><?php echo $completedPickups ?? 0; ?></div>
+                        </div>
                     </div>
                 </div>
                 
@@ -246,26 +361,21 @@ if($userId) {
             <?php endif; ?>
             
             <!-- Quick Actions -->
-            <div class="col-3">
-                <div class="item">
-                    <a href="location.php"><img style="width: 100%; height: 180px; padding: 0px" src="../assets/img/monitoring.jpg" alt="monitoring"></a>
-                    <div class="item-link">
-                       <a href="start.php">Request Trash Pickup</a>
-                    </div>                       
-                </div>  
-                <div class="item">
-                    <a href="map.php"><img style="width: 100%; height: 180px; padding: 0px" src="../assets/img/map.jpg" alt="map"></a>
-                    <div class="item-link">
-                       <a href="listTrash.php">Completed</a>
-                    </div>                       
-                </div>
-                <div class="item">
-                    <a href="alert.php"><img style="width: 100%; height: 180px; padding: 0px" src="../assets/img/alert.jpg" alt="alert"></a>
-                    <div class="item-link">
-                       <a href="editUser.php">Account</a>
-                    </div>                       
-                </div>
-            </div>    
+            <h2 style="margin-top: 40px; margin-bottom: 20px; color: #333; font-size: 22px;">Quick Actions</h2>
+            <div class="action-grid">
+                <a href="location.php" class="action-card">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <span>Request Trash Pickup</span>
+                </a>
+                <a href="listTrash.php" class="action-card">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <span>Completed Pickups</span>
+                </a>
+                <a href="editUser.php" class="action-card">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <span>Account Settings</span>
+                </a>
+            </div>
         </div>
     </div>
 </body>
