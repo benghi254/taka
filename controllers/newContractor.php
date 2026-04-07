@@ -27,20 +27,20 @@ if(isset($_POST['name'],$_POST['area'],$_POST['address'],$_POST['phone'])
         {
             $res=Fadmin::addNewAdmin($admin);
             $_SESSION['done']="New Contractor added successfully";
-            header('Location: ../newContractor.php');
+            header('Location: ../admin/newContractor.php');
         }else
         {
             $_SESSION['err']="Imppossible to add this contractor";
-            header('Location: ../newContractor.php.php');
+            header('Location: ../admin/newContractor.php');
         }
     }
     else {
         $_SESSION['err']="Contractor name alredy taken";
-            header('Location: ../newContractor.php');
+            header('Location: ../admin/newContractor.php');
     }
 }
 else
 {
     $_SESSION['err']="Please Complete all Field";
-    header('Location: ../newContractor.php.php');
+    header('Location: ../admin/newContractor.php');
 }

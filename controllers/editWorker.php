@@ -15,10 +15,10 @@ if(isset($_POST['firstname'],$_POST['lastname'],$_POST['code'],$_POST['phone'],$
     
     Fworker::updateWorker($user, $_POST['oldCode']);
     $_SESSION['done']="Worker Update Successfully";
-    header('Location: ../editWorker.php?idWorker='.$_POST["idWorker"]);
+    header('Location: ../admin/editWorker.php?idWorker='.$_POST["idWorker"]);
 
 }else
 {
     $_SESSION['err']="Something Went Wrong !";
-    header('Location: ../editWorker.php?idWorker='.$_POST["idWorker"]);
+    header('Location: ../admin/editWorker.php?idWorker='.$_POST["idWorker"]);
 }

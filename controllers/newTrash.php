@@ -18,21 +18,21 @@ if(isset($_POST['long'],$_POST['lat'],$_POST['address'],$_POST['idTras'],$_POST[
         if(is_numeric($res))
         {
             $_SESSION['done']="Trash added successfully";
-            header('Location: ../newTrash.php');
+            header('Location: ../admin/newTrash.php');
         }else
         {
             $_SESSION['err']="Impossible to add this trash";
-            header('Location: ../newTrash.php');
+            header('Location: ../admin/newTrash.php');
         }
 
     }else
     {
         $_SESSION['err']="Trash Id already used";
-        header('Location: ../newTrash.php');
+        header('Location: ../admin/newTrash.php');
     }
 
 }else
 {
     $_SESSION['err']="Blank Case !";
-    header('Location: ../newTrash.php');
+    header('Location: ../admin/newTrash.php');
 }

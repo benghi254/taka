@@ -15,9 +15,9 @@ if(isset($_POST['long'],$_POST['lat'],$_POST['address'],$_POST['codeTras'])
     Ftrash::updateTrash($trash);
 
     $_SESSION['done']="Trash Updated Successfully";
-    header('Location: ../editTrash.php?idTrash='.$_POST['idTrash']);
+    header('Location: ../admin/editTrash.php?idTrash='.$_POST['idTrash']);
 }else
 {
     $_SESSION['err']="Blank Case !";
-    header('Location: ../editTrash.php?idTrash='.$_POST['idTrash']);
+    header('Location: ../admin/editTrash.php?idTrash='.$_POST['idTrash']);
 }

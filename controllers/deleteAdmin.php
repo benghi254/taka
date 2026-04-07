@@ -18,10 +18,10 @@ if(isset($_GET['idAdmin'],$_GET['idPart']) && !empty($_GET['idAdmin']))
 	else Fadmin::deleteAdmin($_GET['idAdmin']);
     
 
-    header('Location: ../listAdmin.php');
+    header('Location: ../admin/listAdmin.php');
 
 
 }
 else{
-    header('Location: ../listAdmin.php');
+    header('Location: ../admin/listAdmin.php');
 }

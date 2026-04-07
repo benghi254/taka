@@ -18,9 +18,9 @@ if(isset($_POST['firstname'],$_POST['lastname'],$_POST['username'],$_POST['passw
 
     $_SESSION['done']="Admin Updated successfully";
 
-    header('Location: ../editAdmin.php?idAdmin='.$_POST['idAdmin']);
+    header('Location: ../admin/editAdmin.php?idAdmin='.$_POST['idAdmin']);
 }else
 {
     $_SESSION['err']="Somthing Went Wrong !";
-    header('Location: ../editAdmin.php?idAdmin='.$_POST['idAdmin']);
+    header('Location: ../admin/editAdmin.php?idAdmin='.$_POST['idAdmin']);
 }

@@ -20,20 +20,20 @@ if(isset($_POST['firstname'],$_POST['lastname'],$_POST['username'],$_POST['passw
         if(is_numeric($res))
         {
             $_SESSION['done']="User Added successfully";
-            header('Location: ../newAdmin.php');
+            header('Location: ../admin/newAdmin.php');
         }else
         {
             $_SESSION['err']="Somthing ?";
-            header('Location: ../newAdmin.php');
+            header('Location: ../admin/newAdmin.php');
         }
     }else{
         $_SESSION['err']="Username already taken";
-        header('Location: ../newAdmin.php');
+        header('Location: ../admin/newAdmin.php');
     }
 
 
 }else
 {
     $_SESSION['err']="Blank case !";
-    header('Location: ../newAdmin.php');
+    header('Location: ../admin/newAdmin.php');
 }

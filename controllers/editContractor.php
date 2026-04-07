@@ -22,9 +22,9 @@ if(isset($_POST['name'],$_POST['area'],$_POST['address'],$_POST['phone'])
     	$_SESSION['err']="Contractor name alredy taken";
     }
 
-    header('Location: ../editContractor.php?idPart='.$_POST['idPart']);
+    header('Location: ../admin/editContractor.php?idPart='.$_POST['idPart']);
 }else
 {
     $_SESSION['err']="Something Went Wrong !";
-    header('Location: ../editContractor.php?idPart='.$_POST['idPart']);
+    header('Location: ../admin/editContractor.php?idPart='.$_POST['idPart']);
 }
