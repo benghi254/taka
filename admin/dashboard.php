@@ -15,9 +15,9 @@ $stmt->execute();
 $totalRequests = $stmt->fetchColumn();
 
 // Total Completed Payments
-//$stmt = $conn->prepare("SELECT COUNT(*) FROM payments WHERE status='completed'");
-//$stmt->execute();
-//$totalPayments = $stmt->fetchColumn();
+$stmt = $conn->prepare("SELECT COUNT(*) FROM orders WHERE ResultCode=0");
+$stmt->execute();
+$totalPayments = $stmt->fetchColumn();
 
 $stmt = $conn->prepare("SELECT IFNULL(SUM(Weight),0) FROM trash WHERE Done='True'");
 $stmt->execute();
@@ -194,7 +194,7 @@ $totalTrashBins = $stmt->fetchColumn();
                     </div>
                     <div class="stat-content">
                         <h3>Completed Payments</h3>
-                        <p><?php echo "5"; ?></p>
+                        <p><?php echo $totalPayments; ?></p>
                     </div>
                 </div>
 

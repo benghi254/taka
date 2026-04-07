@@ -34,7 +34,7 @@ foreach($revenueData as $row) {
 }
 
 // 3. Data for Waste Type Distribution
-$wasteTypeQuery = "SELECT trashType, COUNT(*) as count FROM trash GROUP BY trashType";
+$wasteTypeQuery = "SELECT typeTrash, COUNT(*) as count FROM trash GROUP BY typeTrash";
 $wasteTypeStmt = $conn->prepare($wasteTypeQuery);
 $wasteTypeStmt->execute();
 $wasteTypeData = $wasteTypeStmt->fetchAll(PDO::FETCH_ASSOC);
@@ -42,7 +42,7 @@ $wasteTypeData = $wasteTypeStmt->fetchAll(PDO::FETCH_ASSOC);
 $wasteLabels = [];
 $wasteCounts = [];
 foreach($wasteTypeData as $row) {
-    $wasteLabels[] = $row['trashType'] ? ucfirst($row['trashType']) : 'Unknown';
+    $wasteLabels[] = $row['typeTrash'] ? ucfirst($row['typeTrash']) : 'Unknown';
     $wasteCounts[] = $row['count'];
 }
 
@@ -61,6 +61,10 @@ foreach($wasteTypeData as $row) {
 
     <script src="../assets/js/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { primaryColor: '#d6e8f7', primaryBorderColor: '#2563eb' } });
+    </script>
     
     <style>
         .charts-container {
@@ -120,6 +124,25 @@ foreach($wasteTypeData as $row) {
                 <div class="chart-card" style="grid-column: span 1;">
                     <h3>Waste Category Breakdown</h3>
                     <canvas id="wasteChart"></canvas>
+                </div>
+                
+                <div class="chart-card" style="grid-column: 1 / -1; margin-top: 20px;">
+                    <h3>System Workflow Structure</h3>
+                    <div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
+                        <pre class="mermaid">
+                            graph TD
+                                A[Admin] -->|Supervises| B(Contractors)
+                                B -->|Assigned To| C{Areas / Regions}
+                                B -->|Manages| D(Workers)
+                                D -->|Operates Within| C
+                                D -->|Collects From| E((Users))
+                                style A fill:#2563eb,stroke:#1e40af,stroke-width:2px,color:#fff
+                                style B fill:#10b981,stroke:#047857,stroke-width:2px,color:#fff
+                                style D fill:#f59e0b,stroke:#b45309,stroke-width:2px,color:#fff
+                                style C fill:#e11d48,stroke:#9f1239,stroke-width:2px,color:#fff
+                                style E fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff
+                        </pre>
+                    </div>
                 </div>
             </div>
                    
