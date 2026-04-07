@@ -19,7 +19,7 @@ class Fuser
             $user->getAction(),
             
         ));
-        
+        return $con->lastInsertId();
     }
 
     static function updateUser(User $user)

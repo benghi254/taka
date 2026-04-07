@@ -20,7 +20,7 @@ class User
      * @param $password
      * @param $dateCreated
      */
-    public function __construct( $id,$fullname, $email, $phone, $password, $action, $dateCreated)
+    public function __construct( $id = null, $fullname = null, $email = null, $phone = null, $password = null, $action = null, $dateCreated = null)
     {
         $this->id = $id;
         $this->fullname = $fullname;
@@ -74,9 +74,9 @@ class User
     /**
      * @param mixed $username
      */
-    public function setEmail($role)
+    public function setEmail($email)
     {
-        $this->role = $role;
+        $this->email = $email;
     }
 
     /**
