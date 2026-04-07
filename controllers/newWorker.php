@@ -20,15 +20,15 @@ if(isset($_POST['firstname'],$_POST['lastname'],$_POST['code'],$_POST['phone'],$
         if(is_numeric($res))
         {
             $_SESSION['done']="Worker added Successfully";
-            header('Location: ../newWorker.php');
+            header('Location: ../admin/newWorker.php');
         }else{
             $_SESSION['err']="Impossible to add this Worker";
-            header('Location: ../newWorker.php');
+            header('Location: ../admin/newWorker.php');
         }
     }else
     {
         $_SESSION['err']="Id Worker already Taken";
-        header('Location: ../newWorker.php');
+        header('Location: ../admin/newWorker.php');
     }
 
 
@@ -36,5 +36,5 @@ if(isset($_POST['firstname'],$_POST['lastname'],$_POST['code'],$_POST['phone'],$
 }else
 {
     $_SESSION['err']="fill all case ";
-    header('Location: ../addNewUser.php');
+    header('Location: ../admin/newWorker.php');
 }
