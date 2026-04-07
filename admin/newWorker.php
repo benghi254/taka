@@ -48,6 +48,11 @@ if(!isset($_SESSION['username']))
                     <div class="success-submit">
                         <?php if(isset($_SESSION['done'])):?>
                             <?=$_SESSION['done'];?>
+                            <script>
+                                setTimeout(function() {
+                                    window.location.href = 'listWorker.php';
+                                }, 2500);
+                            </script>
                             <?php unset($_SESSION['done']); endif;?>
                     </div>
                     <div class="field-container">
