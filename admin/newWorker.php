@@ -69,9 +69,9 @@ if(!isset($_SESSION['username']))
                         
                         <input type="hidden" value="<?=$_SESSION['idPart'];?>" name="idPart">
                         
-
-                        <button type="submit">Save Worker</button>
-
+                        <div class="button-container">
+                            <button type="submit">Save Worker</button>
+                        </div>
                     </div>
 
                 </form>

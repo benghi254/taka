@@ -15,6 +15,7 @@ form {
 input[type=text],
 input[type=password],
 input[type=email],
+input[type=number],
 select {
     width: 100%;
     padding: 12px 16px;
@@ -119,6 +120,7 @@ span.psw {
     input[type=text],
     input[type=password],
     input[type=email],
+    input[type=number],
     select{
         font-size: 16px;          /* prevents mobile zoom */
         padding: 14px;
