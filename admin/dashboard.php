@@ -65,9 +65,20 @@ $totalTrashBins = $stmt->fetchColumn();
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
+        .icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            flex-shrink: 0;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
         .stat-icon {
-            font-size: 45px;
-            opacity: 0.9;
+            font-size: 32px;
         }
 
         .stat-content {
@@ -89,35 +100,61 @@ $totalTrashBins = $stmt->fetchColumn();
         }
 
         .stat-card.users {
-            border-color: #3498db;
+            border-color: #2980b9;
         }
-
-        .stat-card.users .stat-icon {
-            color: #3498db;
+        .stat-card.users .icon-wrapper {
+            background-color: #2980b9;
         }
 
         .stat-card.requests {
-            border-color: #e67e22;
+            border-color: #d35400;
         }
-
-        .stat-card.requests .stat-icon {
-            color: #e67e22;
+        .stat-card.requests .icon-wrapper {
+            background-color: #d35400;
         }
 
         .stat-card.payments {
-            border-color: #2ecc71;
+            border-color: #27ae60;
         }
-
-        .stat-card.payments .stat-icon {
-            color: #2ecc71;
+        .stat-card.payments .icon-wrapper {
+            background-color: #27ae60;
         }
 
         .stat-card.bins {
-            border-color: #9b59b6;
+            border-color: #8e44ad;
+        }
+        .stat-card.bins .icon-wrapper {
+            background-color: #8e44ad;
         }
 
-        .stat-card.bins .stat-icon {
-            color: #9b59b6;
+        .action-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+            gap: 15px;
+            border: 1px solid #eaeaea;
+        }
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-color: #3498db;
+            color: #3498db;
+        }
+        .action-card i {
+            font-size: 40px;
+            color: inherit;
+        }
+        .action-card span {
+            font-size: 16px;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -132,7 +169,9 @@ $totalTrashBins = $stmt->fetchColumn();
         <div class="ml-24">
             <div class="col-3">
                 <div class="stat-card users">
-                    <i class="fa-solid fa-users stat-icon"></i>
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-users stat-icon"></i>
+                    </div>
                     <div class="stat-content">
                         <h3>Total Users</h3>
                         <p><?php echo $totalUsers; ?></p>
@@ -140,7 +179,9 @@ $totalTrashBins = $stmt->fetchColumn();
                 </div>
 
                 <div class="stat-card requests">
-                    <i class="fa-solid fa-truck-pickup stat-icon"></i>
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-truck-pickup stat-icon"></i>
+                    </div>
                     <div class="stat-content">
                         <h3>Pickup Requests</h3>
                         <p><?php echo $totalRequests; ?></p>
@@ -148,7 +189,9 @@ $totalTrashBins = $stmt->fetchColumn();
                 </div>
 
                 <div class="stat-card payments">
-                    <i class="fa-solid fa-money-bill-wave stat-icon"></i>
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-money-bill-wave stat-icon"></i>
+                    </div>
                     <div class="stat-content">
                         <h3>Completed Payments</h3>
                         <p><?php echo "5"; ?></p>
@@ -156,7 +199,9 @@ $totalTrashBins = $stmt->fetchColumn();
                 </div>
 
                 <div class="stat-card bins">
-                    <i class="fa-solid fa-trash-can stat-icon"></i>
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-trash-can stat-icon"></i>
+                    </div>
                     <div class="stat-content">
                         <h3>Trash Bins</h3>
                         <p><?php echo $totalTrashBins; ?></p>
@@ -164,7 +209,43 @@ $totalTrashBins = $stmt->fetchColumn();
                 </div>
             </div>
 
-
+            <h2 style="margin-top: 40px; margin-bottom: 20px; color: #333; font-size: 22px;">Quick Navigation</h2>
+            <div class="col-3">
+                <a href="monitoring.php" class="action-card">
+                    <i class="fa-solid fa-desktop"></i>
+                    <span>Monitoring</span>
+                </a>
+                <a href="map.php" class="action-card">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <span>Map View</span>
+                </a>
+                <a href="alert.php" class="action-card">
+                    <i class="fa-solid fa-bell"></i>
+                    <span>Alerts</span>
+                </a>
+                <a href="report.php" class="action-card">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Daily Report</span>
+                </a>
+                
+                <?php if ($_SESSION['role']=="admin"):?> 
+                <a href="trash.php" class="action-card">
+                    <i class="fa-solid fa-dumpster"></i>
+                    <span>Trash Bins</span>
+                </a>
+                <?php endif;?>
+                
+                <?php if ($_SESSION['role']=="admin" || $_SESSION['role']=="admin-cont"):?>
+                <a href="partner.php" class="action-card">
+                    <i class="fa-solid fa-users-gear"></i>
+                    <span>Worker & Contractor</span>
+                </a>
+                <a href="admin.php" class="action-card">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <span>Admin</span>
+                </a>
+                <?php endif;?>
+            </div>
         </div>
 
     </div>
