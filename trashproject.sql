@@ -49,6 +49,79 @@ INSERT INTO `admin` (`_idAdmin`, `firstname`, `lastname`, `username`, `password`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `address`
+--
+
+CREATE TABLE `address` (
+  `AddressId` int(11) NOT NULL,
+  `County` varchar(100) DEFAULT NULL,
+  `Constituency` varchar(100) DEFAULT NULL,
+  `Ward` varchar(100) DEFAULT NULL,
+  `Details` text DEFAULT NULL,
+  `Holder` varchar(255) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address_geo_coordinates`
+--
+
+CREATE TABLE `address_geo_coordinates` (
+  `geoId` int(11) NOT NULL,
+  `addressId` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `fullAddress` text DEFAULT NULL,
+  `latitude` varchar(45) DEFAULT NULL,
+  `longitude` varchar(45) DEFAULT NULL,
+  `county` varchar(100) DEFAULT NULL,
+  `constituency` varchar(100) DEFAULT NULL,
+  `ward` varchar(100) DEFAULT NULL,
+  `details` text DEFAULT NULL,
+  `geocoded_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `orderId` int(11) NOT NULL,
+  `PhoneNumber` varchar(45) NOT NULL,
+  `Amount` decimal(10,2) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `TransactionDate` date DEFAULT NULL,
+  `ResultCode` int(11) DEFAULT NULL,
+  `ResultDesc` varchar(255) DEFAULT NULL,
+  `MpesaCode` varchar(45) DEFAULT NULL,
+  `MerchantRequestID` varchar(255) DEFAULT NULL,
+  `CheckoutRequestID` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `userId` int(11) NOT NULL,
+  `fullname` varchar(255) DEFAULT NULL,
+  `Email` varchar(255) DEFAULT NULL,
+  `Mobile` varchar(45) DEFAULT NULL,
+  `Password` text DEFAULT NULL,
+  `Verified` varchar(45) DEFAULT NULL,
+  `DateCreated` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `comments`
 --
 
@@ -109,7 +182,14 @@ CREATE TABLE `trash` (
   `area` varchar(50) NOT NULL,
   `idTrash` varchar(45) DEFAULT NULL,
   `dateTrash` datetime DEFAULT current_timestamp(),
-  `typeTrash` varchar(255) DEFAULT NULL
+  `typeTrash` varchar(255) DEFAULT NULL,
+  `Weight` varchar(45) DEFAULT NULL,
+  `collectDay` varchar(45) DEFAULT NULL,
+  `Ward` varchar(50) DEFAULT NULL,
+  `Details` text DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `issueDate` datetime DEFAULT NULL,
+  `Done` varchar(10) DEFAULT 'False'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -134,6 +214,18 @@ CREATE TABLE `workers` (
 --
 
 --
+-- Indexes for table `address`
+--
+ALTER TABLE `address`
+  ADD PRIMARY KEY (`AddressId`);
+
+--
+-- Indexes for table `address_geo_coordinates`
+--
+ALTER TABLE `address_geo_coordinates`
+  ADD PRIMARY KEY (`geoId`);
+
+--
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
@@ -152,6 +244,12 @@ ALTER TABLE `historic`
   ADD PRIMARY KEY (`_idHisto`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`orderId`);
+
+--
 -- Indexes for table `partners`
 --
 ALTER TABLE `partners`
@@ -164,6 +262,12 @@ ALTER TABLE `trash`
   ADD PRIMARY KEY (`_idTrash`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`userId`);
+
+--
 -- Indexes for table `workers`
 --
 ALTER TABLE `workers`
@@ -172,6 +276,18 @@ ALTER TABLE `workers`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `address`
+--
+ALTER TABLE `address`
+  MODIFY `AddressId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `address_geo_coordinates`
+--
+ALTER TABLE `address_geo_coordinates`
+  MODIFY `geoId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -186,6 +302,12 @@ ALTER TABLE `historic`
   MODIFY `_idHisto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `partners`
 --
 ALTER TABLE `partners`
@@ -196,6 +318,12 @@ ALTER TABLE `partners`
 --
 ALTER TABLE `trash`
   MODIFY `_idTrash` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `workers`
