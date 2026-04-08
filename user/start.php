@@ -70,9 +70,9 @@ if(!isset($_SESSION['area'])){
                             <option value="other">Other</option>
                         </select>
 
-                        <input type="hidden" value="<?=$_SESSION['userId'];?>" name="userId">
-                        <input type="hidden" value="<?=$_SESSION['details'];?>" name="details">
-                        <input type="hidden" value="<?=$_SESSION['area'];?>" name="area">
+                        <input type="hidden" value="<?=$_SESSION['userId'] ?? '';?>" name="userId">
+                        <input type="hidden" value="<?=$_SESSION['details'] ?? '';?>" name="details">
+                        <input type="hidden" value="<?=$_SESSION['area'] ?? '';?>" name="area">
 
                         <button type="submit">Save Trash</button>
 

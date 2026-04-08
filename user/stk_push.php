@@ -1,7 +1,8 @@
 <?php
 include_once '../commons/auth.php';
 
-function formatPhoneNumber($phone) {
+function formatPhoneNumber($phone)
+{
     // Remove spaces, hyphens, brackets, +
     $phone = preg_replace('/[^0-9]/', '', $phone);
 
@@ -22,13 +23,13 @@ function formatPhoneNumber($phone) {
 
     return false; // invalid number
 }
-$consumerKey    = "t4YmLSVSZ6jrDvyzcdqGec9Bw1MJpA5i6fq7PEGHpMhScgCN";
+$consumerKey = "t4YmLSVSZ6jrDvyzcdqGec9Bw1MJpA5i6fq7PEGHpMhScgCN";
 $consumerSecret = "eMG3UB6yFpR2CAIAITzPsaGKKaNYIEvU5jYDFyVpR1c2CGb8vgXfek422RjevhS8";
-$shortcode      = "174379"; 
-$passkey        = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
-$callbackUrl    = "https://55c3-41-72-215-10.ngrok-free.app/taka/user/callback.php";
+$shortcode = "174379";
+$passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+$callbackUrl = "https://factorable-alyvia-unwillingly.ngrok-free.dev/taka/user/callback.php";
 
-$phone  = formatPhoneNumber($_POST['phone']);
+$phone = formatPhoneNumber($_POST['phone']);
 $amount = $_POST['amount'];
 
 // Direct order insertion as requested
@@ -42,7 +43,7 @@ try {
 }
 
 $timestamp = date('YmdHis');
-$password  = base64_encode($shortcode . $passkey . $timestamp);
+$password = base64_encode($shortcode . $passkey . $timestamp);
 
 #---------------- GET ACCESS TOKEN ----------------#
 $tokenUrl = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
