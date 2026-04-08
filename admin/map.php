@@ -72,6 +72,7 @@ $trashBins = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="ml-24">
       <div class="map-header">
         <h2>Collection Map - Addresses & Trash Bins</h2>
+        <button id="geocodeBtn" style="margin-top: 10px; padding: 10px 15px; background: #2563eb; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Geocode Missing Addresses</button>
       </div>
       <div id="map"></div>
       <div class="map-legend">
@@ -164,6 +165,34 @@ $trashBins = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if(markersGroup.getLayers().length > 0) {
       map.fitBounds(markersGroup.getBounds().pad(0.1), { maxZoom: 15 });
     }
+
+    // Geocode Button Logic
+    document.getElementById('geocodeBtn').addEventListener('click', function() {
+      var btn = this;
+      btn.disabled = true;
+      btn.style.background = '#9ca3af';
+      btn.innerText = "Processing... Please wait (rate limited to 1/sec)";
+      
+      fetch('geocode_all.php')
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            if (data.successCount > 0) {
+                location.reload();
+            } else {
+                btn.disabled = false;
+                btn.style.background = '#2563eb';
+                btn.innerText = "Geocode Missing Addresses";
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while geocoding addresses.');
+            btn.disabled = false;
+            btn.style.background = '#2563eb';
+            btn.innerText = "Geocode Missing Addresses";
+        });
+    });
   </script>
 </body>
 </html>
