@@ -90,9 +90,42 @@ $trashBins = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </div>
 
   <script>
-    // Initialize map centered on Nairobi, Kenya
+    // Kenya approximate bounds
+    var kenyaBounds = L.latLngBounds(
+      L.latLng(-4.7, 33.9), // SouthWest
+      L.latLng(5.4, 41.9)   // NorthEast
+    );
+
+    // Initialize map centered on Nairobi, Kenya with bounds restricted to Kenya
     var nairobiCenter = [-1.286389, 36.817223];
-    var map = L.map('map').setView(nairobiCenter, 13);
+    var map = L.map('map', {
+        maxBounds: kenyaBounds,
+        maxBoundsViscosity: 1.0, 
+        minZoom: 6
+    }).setView(nairobiCenter, 13);
+
+    // Apply dark overlay outside Kenya using a bounding box hole
+    var world = [
+        L.latLng(90, -180),
+        L.latLng(90, 180),
+        L.latLng(-90, 180),
+        L.latLng(-90, -180)
+    ];
+    
+    var kenyaHole = [
+        L.latLng(5.5, 33.9),
+        L.latLng(5.5, 41.9),
+        L.latLng(-4.8, 41.9),
+        L.latLng(-4.8, 33.9)
+    ];
+
+    L.polygon([world, kenyaHole], {
+        color: '#666',
+        weight: 1,
+        fillColor: '#000',
+        fillOpacity: 0.65,
+        interactive: false
+    }).addTo(map);
 
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
