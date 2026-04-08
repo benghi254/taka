@@ -363,7 +363,7 @@ if($userId) {
             <!-- Quick Actions -->
             <h2 style="margin-top: 40px; margin-bottom: 20px; color: #333; font-size: 22px;">Quick Actions</h2>
             <div class="action-grid">
-                <a href="location.php" class="action-card">
+                <a href="start.php" class="action-card">
                     <i class="fa-solid fa-map-location-dot"></i>
                     <span>Request Trash Pickup</span>
                 </a>
