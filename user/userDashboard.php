@@ -345,7 +345,11 @@ if($userId) {
                     <div class="order-item">
                         <div>
                             <strong>KES <?php echo number_format($order['Amount'], 2); ?></strong>
-                            <div class="order-date"><?php echo date('M d, Y', strtotime($order['TransactionDate'])); ?></div>
+                            <?php
+                                $tDate = strtotime($order['TransactionDate']);
+                                $displayDate = ($tDate && $tDate > 0) ? date('M d, Y g:i A', $tDate) : 'Today';
+                            ?>
+                            <div class="order-date"><?php echo $displayDate; ?></div>
                         </div>
                         <div>
                             <span style="color: #22c55e; font-weight: bold;"><?php echo strtoupper($order['ResultDesc'] ?? 'PENDING'); ?></span>

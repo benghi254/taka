@@ -46,6 +46,22 @@ foreach($wasteTypeData as $row) {
     $wasteCounts[] = $row['count'];
 }
 
+// 4. Data for Total Weight (in Tonnes)
+$weightQuery = "SELECT Weight FROM trash WHERE Weight IS NOT NULL AND Weight != ''";
+$weightStmt = $conn->prepare($weightQuery);
+$weightStmt->execute();
+$allWeights = $weightStmt->fetchAll(PDO::FETCH_ASSOC);
+
+$totalKg = 0;
+foreach($allWeights as $row) {
+    // Extract only decimal numbers from string (e.g. '10.5 kg' -> 10.5)
+    preg_match('/[0-9]+(?:\.[0-9]+)?/', $row['Weight'], $matches);
+    if (!empty($matches)) {
+        $totalKg += (float)$matches[0];
+    }
+}
+$totalTonnes = $totalKg / 1000;
+
 ?>
 
 <!DOCTYPE html>
@@ -124,6 +140,16 @@ foreach($wasteTypeData as $row) {
                 <div class="chart-card" style="grid-column: span 1;">
                     <h3>Waste Category Breakdown</h3>
                     <canvas id="wasteChart"></canvas>
+                </div>
+                
+                <div class="chart-card" style="grid-column: span 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color: white; border: none; box-shadow: 0 10px 25px rgba(37,99,235,0.3);">
+                    <h3 style="color: white; border-bottom: 2px solid rgba(255,255,255,0.2); width: 100%;">Total Waste Collected</h3>
+                    <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <i class="fa-solid fa-weight-hanging" style="font-size: 55px; margin-bottom: 20px; color: rgba(255,255,255,0.9); filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));"></i>
+                        <div style="font-size: 50px; font-weight: 800; line-height: 1; text-shadow: 0 4px 6px rgba(0,0,0,0.1);"><?php echo number_format($totalTonnes, 3); ?></div>
+                        <div style="font-size: 16px; margin-top: 10px; opacity: 0.95; text-transform: uppercase; letter-spacing: 2px; font-weight: bold;">Metric Tonnes</div>
+                        <div style="font-size: 14px; margin-top: 8px; opacity: 0.75; font-family: monospace;">( <?php echo number_format($totalKg, 2); ?> KG )</div>
+                    </div>
                 </div>
                 
                 <div class="chart-card" style="grid-column: 1 / -1; margin-top: 20px;">

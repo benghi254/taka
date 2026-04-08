@@ -37,7 +37,7 @@ include_once '../modals/Database.php';
 $conn = Database::getConnection();
 $orderId = null;
 try {
-    $stmt = $conn->prepare('INSERT INTO orders (PhoneNumber, Amount, userId) VALUES (?, ?, ?)');
+    $stmt = $conn->prepare('INSERT INTO orders (PhoneNumber, Amount, userId, TransactionDate) VALUES (?, ?, ?, NOW())');
     $stmt->execute([$_POST['phone'], $_POST['amount'], $_SESSION['userId']]);
     $orderId = $conn->lastInsertId();
 } catch (PDOException $e) {

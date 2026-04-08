@@ -39,9 +39,9 @@ if ($resultCode == 0) {
                                 MpesaCode = ? 
                                 WHERE CheckoutRequestID = ?');
         
-        // Format M-Pesa date (YmdHis) to DB format (Y-m-d)
+        // Format M-Pesa date (YmdHis) to DB format (Y-m-d H:i:s)
         $dt = DateTime::createFromFormat('YmdHis', $TransactionDate);
-        $finalDate = $dt ? $dt->format('Y-m-d') : date('Y-m-d');
+        $finalDate = $dt ? $dt->format('Y-m-d H:i:s') : date('Y-m-d H:i:s');
 
         $stmt->execute([
             $finalDate,
