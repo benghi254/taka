@@ -39,6 +39,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             ");
             $result = $stmt->execute([$county, $constituency, $ward, $details, $holder, $userId]);
             $message = "Address updated successfully!";
+            
+            // Get the address ID to update geo coordinates
+            $stmt = $conn->prepare("SELECT AddressId FROM address WHERE userId = ?");
+            $stmt->execute([$userId]);
+            $addressRow = $stmt->fetch();
+            if ($addressRow) {
+                include_once '../modals/FaddressGeo.php';
+                FaddressGeo::saveAddressWithGeo($addressRow['AddressId'], $userId, $county, $constituency, $ward, $details);
+            }
         } else {
             // INSERT new address
             $stmt = $conn->prepare("
@@ -47,6 +56,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             ");
             $result = $stmt->execute([$userId, $county, $constituency, $ward, $details, $holder]);
             $message = "Address saved successfully!";
+            $addressId = $conn->lastInsertId();
+            
+            if ($addressId && $result) {
+                include_once '../modals/FaddressGeo.php';
+                FaddressGeo::saveAddressWithGeo($addressId, $userId, $county, $constituency, $ward, $details);
+            }
         }
         
         if($result) {

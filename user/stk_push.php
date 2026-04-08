@@ -35,9 +35,11 @@ $amount = $_POST['amount'];
 // Direct order insertion as requested
 include_once '../modals/Database.php';
 $conn = Database::getConnection();
+$orderId = null;
 try {
     $stmt = $conn->prepare('INSERT INTO orders (PhoneNumber, Amount, userId) VALUES (?, ?, ?)');
     $stmt->execute([$_POST['phone'], $_POST['amount'], $_SESSION['userId']]);
+    $orderId = $conn->lastInsertId();
 } catch (PDOException $e) {
     // Fail silently or log error
 }
@@ -92,8 +94,10 @@ if (isset($res->ResponseCode) && $res->ResponseCode == "0") {
     $merchantRequestID = $res->MerchantRequestID;
 
     // Update the record we inserted earlier
-    $stmt = $conn->prepare('UPDATE orders SET MerchantRequestID = ?, CheckoutRequestID = ? WHERE PhoneNumber = ? AND Amount = ? AND CheckoutRequestID = "" ORDER BY orderId DESC LIMIT 1');
-    $stmt->execute([$merchantRequestID, $checkoutRequestID, $_POST['phone'], $_POST['amount']]);
+    if ($orderId) {
+        $stmt = $conn->prepare('UPDATE orders SET MerchantRequestID = ?, CheckoutRequestID = ? WHERE orderId = ?');
+        $stmt->execute([$merchantRequestID, $checkoutRequestID, $orderId]);
+    }
 }
 
 header("location: checkout_succes.php");
