@@ -51,7 +51,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         if($result) {
             // Set session flag to indicate address is set
-            $_SESSION['area'] = true;
+            $_SESSION['area'] = $ward;
+            $_SESSION['details'] = $details;
+            $_SESSION['type'] = $holder;
             $_SESSION['done'] = $message;
             
             // Redirect to start page or dashboard

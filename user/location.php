@@ -16,8 +16,10 @@ if($userId) {
     // If address exists, redirect to start page
     if($existingAddress && !empty($existingAddress['County'])) {
         $isUpdate = true;
-        // Optional: Set session for future checks
-        $_SESSION['area'] = true;
+        // Set session for future checks
+        $_SESSION['area'] = $existingAddress['Ward'];
+        $_SESSION['details'] = $existingAddress['Details'];
+        $_SESSION['type'] = $existingAddress['Holder'];
     }
 }
 
